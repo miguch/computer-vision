@@ -1,0 +1,12 @@
+a.out*
+CMake*
+cmake*
+a.exe
+!CMakeLists.txt
+
+MakeFile
+Makefile
+.idea
+*.ilk
+*.pdb
+.DS_Store

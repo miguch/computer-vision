@@ -1,0 +1,11 @@
+a.out*
+CMake*
+cmake*
+a.exe
+ecanny_map.bmp
+smoothed_image.bmp
+linesDeleted.bmp
+sobel.bmp
+
+cmake-build-debug
+.idea

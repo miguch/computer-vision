@@ -1,0 +1,6 @@
+./a4detect -t 0.5 80 IMG_20150320_143133.bmp
+./a4detect -t 0.6 60 IMG_20150320_143145.bmp
+./a4detect -t 0.6 80 IMG_20150320_143211.bmp
+./a4detect -t 0.5 60 IMG_20150320_143220.bmp
+./a4detect -t 0.5 50 IMG_20150320_143334.bmp
+./a4detect -t 0.5 50 IMG_20150320_143345.bmp
