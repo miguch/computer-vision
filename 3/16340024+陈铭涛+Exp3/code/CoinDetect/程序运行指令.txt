@@ -1,0 +1,6 @@
+./coin-detect -t 0.7 60 2.bmp 150 160
+./coin-detect -t 0.7 80 5.bmp 200 225
+./coin-detect -t 0.7 50 6.bmp 150 180
+./coin-detect -t 0.7 40 11.bmp 175 200
+./coin-detect -t 0.7 50 12.bmp 470 520
+./coin-detect -t 0.7 50 f55bcad35f5d993c80f928f3dc940aa8.bmp 40 70

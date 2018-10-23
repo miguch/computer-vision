@@ -44,7 +44,7 @@ cmake -G "NMake Makefiles" .
 nmake
 ```
 
-	### 程序测试
+### 程序测试
 
 使用给定的测试集进行测试，测试的结果图片与终端输出及所使用的程序参数如下：
 
@@ -52,49 +52,49 @@ nmake
 
    `./a4detect -t 0.5 80 IMG_20150320_143133.bmp`
 
-   ![a4-1](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/a4-1.jpg)
+   ![a4-1](../screenshoot/a4-1.jpg){:height="50%" width="50%"}
 
-   ![a4-cli-1](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/a4-cli-1.jpg)
+   ![a4-cli-1](../screenshoot/a4-cli-1.jpg)
 
 2. IMG_20150320_143145.bmp（霍夫变换阈值0.6， Canny 阈值60）
 
    `./a4detect -t 0.6 60 IMG_20150320_143145.bmp`
 
-   ![a4-2](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/a4-2.jpg)
+   ![a4-2](../screenshoot/a4-2.jpg){:height="50%" width="50%"}
 
-   ![a4-cli-2](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/a4-cli-2.jpg)
+   ![a4-cli-2](../screenshoot/a4-cli-2.jpg){:height="50%" width="50%"}
 
 3. IMG_20150320_143211.bmp(霍夫变换阈值0.6， Canny 阈值80)
 
    `./a4detect -t 0.6 80 IMG_20150320_143211.bmp`
 
-   ![a4-3](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/a4-3.jpg)
+   ![a4-3](../screenshoot/a4-3.jpg){:height="50%" width="50%"}
 
-   ![a4-cli-3](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/a4-cli-3.jpg)
+   ![a4-cli-3](../screenshoot/a4-cli-3.jpg)
 
 4. IMG_20150320_143220.bmp(霍夫变换阈值0.5， Canny 阈值60)
 
    `./a4detect -t 0.5 60 IMG_20150320_143220.bmp`
 
-   ![a4-4](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/a4-4.jpg)
+   ![a4-4](../screenshoot/a4-4.jpg){:height="50%" width="50%"}
 
-   ![a4-cli-4](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/a4-cli-4.jpg)
+   ![a4-cli-4](../screenshoot/a4-cli-4.jpg)
 
 5. IMG_20150320_143334.bmp(霍夫变换阈值0.5， Canny 阈值60)
 
    `./a4detect -t 0.5 50 IMG_20150320_143334.bmp`
 
-   ![a4-5](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/a4-5.jpg)
+   ![a4-5](../screenshoot/a4-5.jpg){:height="50%" width="50%"}
 
-   ![a4-cli-5](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/a4-cli-5.jpg)
+   ![a4-cli-5](../screenshoot/a4-cli-5.jpg)
 
    6. IMG_20150320_143345.bmp(霍夫变换阈值0.5， Canny 阈值50)
 
       `./a4detect -t 0.5 50 IMG_20150320_143345.bmp`
 
-      ![a4-6](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/a4-6.jpg)
+      ![a4-6](../screenshoot/a4-6.jpg){:height="50%" width="50%"}
 
-      ![a4-cli-6](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/a4-cli-6.jpg)
+      ![a4-cli-6](../screenshoot/a4-cli-6.jpg)
 
    ### 测试中的参数分析
 
@@ -147,49 +147,49 @@ nmake
 
    `./coin-detect -t 0.7 60 2.bmp 150 160`
 
-   ![coins-1](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/coins-1.png)
+   ![coins-1](../screenshoot/coins-1.png){:height="50%" width="50%"}
 
-   ![coin-cli-1](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/coin-cli-1.png)
+   ![coin-cli-1](../screenshoot/coin-cli-1.png)
 
 2. 5.bmp(Canny 阈值80，大小半径200， 225)
 
    `./coin-detect -t 0.7 80 5.bmp 200 225`
 
-   ![coins-2](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/coins-2.png)
+   ![coins-2](../screenshoot/coins-2.png){:height="50%" width="50%"}
 
-   ![coin-cli-2](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/coin-cli-2.png)
+   ![coin-cli-2](../screenshoot/coin-cli-2.png)
 
 3. 6.bmp(Canny 阈值50，大小半径150， 180)
 
    `./coin-detect -t 0.7 50 6.bmp 150 180`
 
-   ![coins-3](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/coins-3.png)
+   ![coins-3](../screenshoot/coins-3.png){:height="50%" width="50%"}
 
-   ![coin-cli-3](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/coin-cli-3.png)
+   ![coin-cli-3](../screenshoot/coin-cli-3.png)
 
 4. 11.bmp(Canny 阈值40，大小半径175， 200)
 
    `./coin-detect -t 0.7 40 11.bmp 175 200`
 
-   ![coins-4](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/coins-4.png)
+   ![coins-4](../screenshoot/coins-4.png){:height="50%" width="50%"}
 
-   ![coin-cli-4](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/coin-cli-4.png)
+   ![coin-cli-4](../screenshoot/coin-cli-4.png)
 
 5. 12.bmp(Canny 阈值50，大小半径470, 520)
 
    `./coin-detect -t 0.7 50 12.bmp 470 520`
 
-   ![coins-5](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/coins-5.png)
+   ![coins-5](../screenshoot/coins-5.png){:height="50%" width="50%"}
 
-   ![coin-cli-5](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/coin-cli-5.png)
+   ![coin-cli-5](../screenshoot/coin-cli-5.png)
 
 6. f55bcad35f5d993c80f928f3dc940aa8.bmp(Canny 阈值50，大小半径40, 70)
 
    `./coin-detect -t 0.7 50 f55bcad35f5d993c80f928f3dc940aa8.bmp 40 70`
 
-   ![coins-6](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/coins-6.png)
+   ![coins-6](../screenshoot/coins-6.png){:height="50%" width="50%"}
 
-   ![coin-cli-6](/Users/mig/Desktop/大三上/computer-vision/assignment/screenshoot/coin-cli-6.png)
+   ![coin-cli-6](../screenshoot/coin-cli-6.png)
 
 ### 测试输入参数分析
 
