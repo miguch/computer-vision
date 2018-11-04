@@ -9,7 +9,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
     if (argc == 1) {
-        cout << "Usage: " << argv[0] << "-i filename [{-l|--level} histogram level(default 256)] [-rgb(default grey scale)]" << endl;
+        cout << "Usage: " << argv[0] << " -i filename [{-l|--level} histogram level(default 256)] [-rgb(default grey scale)]" << endl;
         exit(1);
     }
     int i, histoLevel = 256;
