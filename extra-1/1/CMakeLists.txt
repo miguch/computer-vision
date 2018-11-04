@@ -16,7 +16,7 @@ if(UNIX AND NOT APPLE)
     message(STATUS "Looking for X11...")
     find_package(X11 REQUIRED)
     include_directories(${X11_INCLUDE_DIR})
-    target_link_libraries(a4detect-linux ${X11_LIBRARIES})
+    target_link_libraries(HistogramEqualization-linux ${X11_LIBRARIES})
 endif(UNIX AND NOT APPLE)
 
 if (WIN32)
