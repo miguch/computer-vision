@@ -7,6 +7,7 @@
 
 #include <string>
 #include "CImg.h"
+#include <vector>
 
 using namespace std;
 using namespace cimg_library;
