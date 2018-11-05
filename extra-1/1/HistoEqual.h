@@ -25,8 +25,12 @@ public:
     explicit HistoEqual(string filename);
     CImg<unsigned char> runWithGreyScale(int nb_level);
     CImg<unsigned char> runWithRGB(int nb_level);
+    CImg<unsigned char> runWithYCbCr(int nb_level);
     CImg<unsigned char> getRGBHistogram();
     CImg<unsigned char> getGreyHistogram();
+
+    static CImg<unsigned char> RGBtoYCbCr(const CImg<unsigned char>& img);
+    static CImg<unsigned char> YCbCrtoRGB(const CImg<unsigned char>& img);
 
 };
 

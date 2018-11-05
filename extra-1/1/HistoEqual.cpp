@@ -73,3 +73,44 @@ void HistoEqual::equalizeImageChannel(CImg<unsigned char> &input, int channel, i
 }
 
 
+//Convert RGB color space to YCbCr color space
+CImg<unsigned char> HistoEqual::RGBtoYCbCr(const CImg<unsigned char>& img) {
+    CImg<unsigned char> ycbcr(img.width(), img.height(), 1, 3, 0);
+    cimg_forXY(img, x, y) {
+        auto r = img(x, y, 0), g = img(x, y, 1), b = img(x, y, 2);
+        int Y = 0.299 * r + 0.587 * g + 0.114 * b; // Y
+        int Cr = 128 - 0.168736 * r - 0.331264 * g + 0.5 * b; //CR
+        int Cb = 128 + 0.5 * r - 0.418688 * g - 0.081312 * b; //CB
+        ycbcr(x, y, 0) = (unsigned char)(Y > 255 ? 255 : (Y < 0 ? 0 : Y));
+        ycbcr(x, y, 1) = (unsigned char)(Cr > 255 ? 255 : (Cr < 0 ? 0 : Cr));
+        ycbcr(x, y, 2) = (unsigned char)(Cb > 255 ? 255 : (Cb < 0 ? 0 : Cb));
+    }
+    return ycbcr;
+}
+
+//Convert YCbCr color space to RGB
+CImg<unsigned char> HistoEqual::YCbCrtoRGB(const CImg<unsigned char> &img) {
+    //lab to LMS
+    CImg<double> rgb(img.width(), img.height(), 1, 3, 0);
+    cimg_forXY(img, x, y) {
+         auto Y = img(x, y, 0), cB = img(x, y, 1), cR = img(x, y, 2);
+         int r = Y + 1.402 * (cR - 128);
+         int g = Y - 0.344136 * (cB - 128) - 0.714136 * (cR - 128);
+         int b = Y + 1.772 * (cB - 128);
+         rgb(x, y, 0) = (unsigned char)(r > 255 ? 255 : (r < 0 ? 0 : r));
+         rgb(x, y, 1) = (unsigned char)(g > 255 ? 255 : (g < 0 ? 0 : g));
+         rgb(x, y, 2) = (unsigned char)(b > 255 ? 255 : (b < 0 ? 0 : b));
+        }
+
+    return rgb;
+}
+
+CImg<unsigned char> HistoEqual::runWithYCbCr(int nb_level) {
+    auto ycbcr = RGBtoYCbCr(origin);
+
+    //Only equalize the Y channel
+    equalizeImageChannel(ycbcr, 0, nb_level);
+
+    return YCbCrtoRGB(ycbcr);
+}
+

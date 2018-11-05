@@ -27723,7 +27723,8 @@ namespace cimg_library_suffixed {
        \endcode
        \image html ref_equalize.jpg
     **/
-    CImg<T>& equalize(const unsigned int nb_levels, const T& min_value, const T& max_value) {
+    CImg<T>&
+            equalize(const unsigned int nb_levels, const T& min_value, const T& max_value) {
       if (!nb_levels || is_empty()) return *this;
       const T
         vmin = min_value<max_value?min_value:max_value,
