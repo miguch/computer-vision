@@ -48,7 +48,8 @@ int main(int argc, char** argv) {
     ColorTransfer ct(source, target);
     auto result = ct.run();
     result.save("transfer.bmp");
-    ct.getSource().append(ct.getTarget()).append(result).display("Image after transfer");
+    CImg<unsigned char> src = ct.getSource(), tgt = ct.getTarget();
+    src.append(tgt.resize(-100, src.height())).append(result).display("Image after transfer");
 
     return 0;
 }
