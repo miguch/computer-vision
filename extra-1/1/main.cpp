@@ -9,7 +9,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
     if (argc == 1) {
-        cout << "Usage: " << argv[0] << " -i filename [-l|--level histogram level(default 256)] [{-rgb|-ycbcr}]" << endl;
+        cout << "Usage: " << argv[0] << " -i filename [-l|--level histogram level(default 256)] [-rgb] [-ycbcr]" << endl;
         exit(1);
     }
     int i, histoLevel = 256;
@@ -47,30 +47,28 @@ int main(int argc, char** argv) {
         cerr << "You must specifiy a input file!" << endl;
         exit(1);
     }
-    if (rgb && ycbcr) {
-        cerr << "You can not choose both rgb and ycbcr mode." << endl;
-        exit(1);
-    }
 
     HistoEqual he(filename);
     //Histogram Equalization
-    if (rgb) {
-        he.getRGBHistogram().display_graph("RGB histogram before processing", 3);
+    if (rgb && ycbcr) {
         auto RGBEqualized = he.runWithRGB(histoLevel);
         RGBEqualized.save("RGBEqualized.bmp");
-        RGBEqualized.display("RGBEqualized");
-        RGBEqualized.histogram(256).display_graph("RGB histogram after processing", 3);
+        auto YCbCrEqualized = he.runWithYCbCr(histoLevel);
+        YCbCrEqualized.save("YCbCrEqualized.bmp");
+        he.getOriginImage().append(RGBEqualized).append(YCbCrEqualized).display("Equalized");
+    } else if (rgb) {
+        auto RGBEqualized = he.runWithRGB(histoLevel);
+        RGBEqualized.save("RGBEqualized.bmp");
+        he.getOriginImage().append(RGBEqualized).display("RGBEqualized");
     } else if (ycbcr) {
-        he.getRGBHistogram().display_graph("YCbCr histogram before processing", 3);
         auto Equalized = he.runWithYCbCr(histoLevel);
         Equalized.save("YCbCrEqualized.bmp");
-        Equalized.display("YCbCrEqualized");
-        Equalized.histogram(256).display_graph("YCbCr histogram after processing", 3);
+        he.getOriginImage().append(Equalized).display("YCbCrEqualized");
     } else {
         he.getGreyHistogram().display_graph("Grey scale histogram before processing", 3);
         auto greyEqualized = he.runWithGreyScale(histoLevel);
         greyEqualized.save("greyEqualized.bmp");
-        greyEqualized.display("greyEqualized");
+        he.getGreyScale().append(greyEqualized).display("greyEqualized");
         greyEqualized.histogram(256).display_graph("Grey histogram after processing", 3);
     }
     return 0;

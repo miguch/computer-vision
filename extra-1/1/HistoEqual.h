@@ -28,6 +28,8 @@ public:
     CImg<unsigned char> runWithYCbCr(int nb_level);
     CImg<unsigned char> getRGBHistogram();
     CImg<unsigned char> getGreyHistogram();
+    CImg<unsigned char> getOriginImage();
+    CImg<unsigned char> getGreyScale();
 
     static CImg<unsigned char> RGBtoYCbCr(const CImg<unsigned char>& img);
     static CImg<unsigned char> YCbCrtoRGB(const CImg<unsigned char>& img);

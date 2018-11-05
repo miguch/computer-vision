@@ -91,3 +91,11 @@ array<double, 3> ColorTransfer::getStdDev(const CImg<double>& img, const array<d
     for (int i = 0; i < 3; i++) res[i] = sqrt(res[i] / (img.width() * img.height() - 1));
     return res;
 }
+
+CImg<unsigned char> ColorTransfer::getTarget() {
+    return target;
+}
+
+CImg<unsigned char> ColorTransfer::getSource() {
+    return source;
+}

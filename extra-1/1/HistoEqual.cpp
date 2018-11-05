@@ -22,10 +22,11 @@ void HistoEqual::toGreyScaleImage() {
 //nb_level:	Number of desired histogram levels.
 //Returns the Histogram equalized RGB image
 CImg<unsigned char> HistoEqual::runWithRGB(int nb_level) {
+    CImg<unsigned char> copy(origin);
     for (int i = 0; i < 3; i++) {
-        equalizeImageChannel(origin, i, nb_level);
+        equalizeImageChannel(copy, i, nb_level);
     }
-    return origin;
+    return copy;
 }
 
 //nb_level:	Number of desired histogram levels.
@@ -112,5 +113,13 @@ CImg<unsigned char> HistoEqual::runWithYCbCr(int nb_level) {
     equalizeImageChannel(ycbcr, 0, nb_level);
 
     return YCbCrtoRGB(ycbcr);
+}
+
+CImg<unsigned char> HistoEqual::getOriginImage() {
+    return origin;
+}
+
+CImg<unsigned char> HistoEqual::getGreyScale() {
+    return greyScale;
 }
 

@@ -22,6 +22,8 @@ public:
     static CImg<double> RGBtoLab(const CImg<unsigned char>& img);
     static CImg<unsigned char> LabtoRGB(const CImg<double>& img);
     CImg<unsigned char> run();
+    CImg<unsigned char> getSource();
+    CImg<unsigned char> getTarget();
 };
 
 
