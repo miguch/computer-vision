@@ -24,7 +24,7 @@ private:
 
 public:
     ImageMorphing(string s, string d);
-    pair<CImg<unsigned char>,CImg<unsigned char>> morph(const vector<pair<point, point>>& points, unsigned intermediates);
+    pair<CImg<unsigned char>,CImgList<unsigned char>> morph(const vector<pair<point, point>>& points, unsigned intermediates);
 
     vector<pair<point, point>> selectPoints(const vector<pair<point, point>>& existing = vector<pair<point, point>>());
     static vector<pair<point, point>> readPointsFromFile(string filename);

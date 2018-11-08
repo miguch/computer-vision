@@ -13,12 +13,10 @@ ImageMorphing::ImageMorphing(string s, string d) {
     destination = CImg<unsigned char>(d.c_str()).resize(source);
 }
 
-pair<CImg<unsigned char>,CImg<unsigned char>> ImageMorphing::morph(const vector<pair<ImageMorphing::point, ImageMorphing::point>>& points, unsigned intermediate) {
+pair<CImg<unsigned char>,CImgList<unsigned char>> ImageMorphing::morph(const vector<pair<ImageMorphing::point, ImageMorphing::point>>& points, unsigned intermediate) {
     CImg<unsigned char> res(source);
-    CImg<unsigned char> vid(source.width(), source.height(), intermediate + 2, 3, 0);
-    cimg_forXY(source, x, y) {
-        for (int k = 0; k < 3; k++) vid(x, y, 0, k) = source(x, y, k);
-    }
+    CImgList<unsigned char> vid;
+    vid.push_back(source);
     double interval = 1.0 / (intermediate+1);
     vector<point> srcOld, destOld;
     for (auto & p : points) {
@@ -43,14 +41,10 @@ pair<CImg<unsigned char>,CImg<unsigned char>> ImageMorphing::morph(const vector<
             for (int i = 0; i < 3; i++) inter(x, y, i) = (1.0 - alpha) * newSrc(x, y, i) + alpha * newDest(x, y, i);
         }
         res.append(inter);
-        cimg_forXY(inter, x, y) {
-            for (int k = 0; k < 3; k++) vid(x, y, i, k) = inter(x, y, k);
-        }
+        vid.push_back(inter);
     }
     cout << endl;
-    cimg_forXY(destination, x, y) {
-            for (int k = 0; k < 3; k++) vid(x, y, intermediate+1, k) = destination(x, y, k);
-    }
+    vid.push_back(destination);
     res.append(destination);
     return {res, vid};
 }
