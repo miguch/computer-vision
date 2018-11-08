@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
     string sourceFile, targetFile, loadPointFile, savePointFile;
     bool edit = false;
     int i;
-    int frames = 11, fps = 11;
+    int frames = 11, fps = 5;
 
     //Process args
     unordered_map<string, function<void()>> processor;
@@ -88,7 +88,7 @@ int main(int argc, char** argv) {
 
     auto res = im.morph(points, frames);
     res.first.save("result.bmp");
-    res.second.save_ffmpeg_external("result.mp4", 20);
+    res.second.save_ffmpeg_external("result.gif", 20);
     res.first.display();
 
 }
