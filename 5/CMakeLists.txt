@@ -25,6 +25,7 @@ if(UNIX AND NOT APPLE)
     find_package(X11 REQUIRED)
     include_directories(${X11_INCLUDE_DIR})
     target_link_libraries(morphing-linux ${X11_LIBRARIES})
+    target_link_libraries(img2vid-linux ${X11_LIBRARIES})
 endif(UNIX AND NOT APPLE)
 
 if (WIN32)
