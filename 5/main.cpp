@@ -87,8 +87,11 @@ int main(int argc, char** argv) {
     }
 
     auto res = im.morph(points, frames);
-    res.first.save("result.bmp");
+    //add reverse ordered frames
+    for (int i = res.second.size() - 1; i >= 0; i--) {
+        res.second.push_back(res.second(i));
+    }
     res.second.save_ffmpeg_external("result.mp4", fps);
-    res.first.display();
+    cout << "Done, result written to result.mp4" << endl;
     return 1;
 }
