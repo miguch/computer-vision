@@ -91,8 +91,8 @@ int main(int argc, char** argv) {
     for (int i = res.second.size() - 1; i >= 0; i--) {
         res.second.push_back(res.second(i));
     }
-    res.second.save_ffmpeg_external("result.mp4", fps);
     res.first.save("result.bmp");
+    res.second.save_ffmpeg_external("result.mp4", fps);
     cout << "Done, result written to result.mp4" << endl;
     return 1;
 }
