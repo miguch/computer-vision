@@ -6,6 +6,7 @@
 #define PANORAMA_UTILS_H
 
 #include "CImg.h"
+#include <cstdint>
 
 using namespace cimg_library;
 
