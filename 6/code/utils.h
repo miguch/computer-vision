@@ -5,7 +5,7 @@
 #ifndef PANORAMA_UTILS_H
 #define PANORAMA_UTILS_H
 
-#include <CImg.h>
+#include "CImg.h"
 
 using namespace cimg_library;
 

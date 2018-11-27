@@ -7,10 +7,15 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
+link_directories($ENV{VLROOT}/bin/maci64/)
+
 if (APPLE)
-    set (CMAKE_CXX_FLAGS "-lX11 -L/usr/X11/lib -I/usr/X11/include")
+    set (CMAKE_CXX_FLAGS "-lX11 -L/usr/X11/lib -I/usr/X11/include -I$ENV{VLROOT} -L$ENV{VLROOT}/bin/maci64/ -lvl")
     add_executable(panorama-mac
             CImg.h main.cpp spherical_warp.cpp spherical_warp.h feature_extract.cpp feature_extract.h point.cpp point.h utils.cpp utils.h feature_matching.cpp feature_matching.h)
+    configure_file(libvl.dylib ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COPYONLY)
+    configure_file(libomp.dylib ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COPYONLY)
+    target_link_libraries(panorama-mac libvl.dylib)
 endif (APPLE)
 
 if(UNIX AND NOT APPLE)
@@ -20,6 +25,8 @@ if(UNIX AND NOT APPLE)
     message(STATUS "Looking for X11...")
     find_package(X11 REQUIRED)
     include_directories(${X11_INCLUDE_DIR})
+    configure_file(libvl.so ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COPYONLY)
+    target_link_libraries(panorama-linux libvl.so)
     target_link_libraries(panorama-linux ${X11_LIBRARIES})
 endif(UNIX AND NOT APPLE)
 
@@ -28,6 +35,9 @@ if (WIN32)
     set (CMAKE_SHARED_LINKER_FLAGS "-lgdi32")
     add_executable(panorama
             CImg.h main.cpp spherical_warp.cpp spherical_warp.h feature_extract.cpp feature_extract.h point.cpp point.h utils.cpp utils.h feature_matching.cpp feature_matching.h)
+    configure_file(vl.dll ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COPYONLY)
+    configure_file(vl.lib ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COPYONLY)
+    target_link_libraries(panorama vl.lib)
 endif(WIN32)
 
 include_directories(.)

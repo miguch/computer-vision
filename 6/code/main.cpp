@@ -6,11 +6,15 @@
 #include "feature_extract.h"
 #include "utils.h"
 
+extern "C" {
+    #include <vl/generic.h>
+}
+
 using namespace std;
 
 int main(int argc, char** argv) {
+    VL_PRINT ("Hello world!") ;
     CImg<unsigned char> a(argv[1]);
-
     a = utils::toGreyScale(a);
     feature_extract fe(a);
     auto re = fe.getOctaves();
