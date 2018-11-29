@@ -12,7 +12,8 @@ using namespace cimg_library;
 
 namespace utils {
 
-    CImg<uint8_t> toGreyScale(const CImg<uint8_t>& src);
+    unsigned char interpolate(const CImg<unsigned char> &src, double x, double y, int channel);
+    CImg<unsigned char> toGreyScale(const CImg<unsigned char>& src);
 
 };
 

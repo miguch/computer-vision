@@ -2,42 +2,53 @@
 // Created by Miguel Chan on 2018/11/20.
 //
 #include <iostream>
+#include <string>
+#include <vector>
 #include "spherical_warp.h"
-#include "feature_extract.h"
 #include "utils.h"
-
-extern "C" {
-    #include <vl/generic.h>
-}
+#include "feature_extraction.h"
+#include "image_stitching.h"
 
 using namespace std;
 
+string pathJoin(const string& a, const string& b) {
+#if _WIN32
+    return a + '\\' + b;
+#else
+    return a + '/' + b;
+#endif
+}
+
+
+
 int main(int argc, char** argv) {
-    VL_PRINT ("Hello world!") ;
-    CImg<unsigned char> a(argv[1]);
-    a = utils::toGreyScale(a);
-    feature_extract fe(a);
-    auto re = fe.getOctaves();
-    auto dog = fe.getDOGs();
-    auto extremas = fe.getExtremas();
-    auto ori = fe.getOrientations();
-    auto mag = fe.getMagnitudes();
-
-    for (int i  = 0; i < re.size(); i++) {
-        re[i].save((to_string(i) + ".jpg").c_str());
+    int images;
+    string baseDir = ".";
+    if (argc == 1) {
+        cerr << "\nUsage: " << argv[0] << " imageNumber [imageDirectory]" << endl;
+        return 1;
+    }
+    if (argc > 1) {
+        images = atoi(argv[1]);
+    }
+    if (argc > 2) {
+        baseDir = argv[2];
     }
 
-    for (int i = 0; i < dog.size(); i++) {
-        dog[i].save((to_string(i) + "dog.jpg").c_str());
+    vector<CImg<unsigned char>> sources;
+    sources.reserve(images);
+
+    for (int i = 0; i < images; i++) {
+        string fullPath = pathJoin(baseDir, to_string(i) + ".bmp");
+        auto img = CImg<unsigned char>(fullPath.c_str());
+        //Make the image smaller to save some time
+        if (img.height() > 1024)
+            img.resize(1024 * img.width() / img.height(), 1024);
+        sources.push_back(img);
     }
 
-    for (int i = 0; i < extremas.size(); i++) {
-        extremas[i].save((to_string(i) + "ext.jpg").c_str());
-    }
+    auto pano = stitching::run_stitching(sources);
 
-    for (int i = 0; i < ori.size(); i++) {
-        ori[i].save((to_string(i) + "ori.jpg").c_str());
-        mag[i].save((to_string(i) + "mag.jpg").c_str());
-    }
+    pano.display();
 
 }
