@@ -12,7 +12,7 @@
 using namespace std;
 
 string pathJoin(const string& a, const string& b) {
-#if _WIN32
+#ifdef _WIN32
     return a + '\\' + b;
 #else
     return a + '/' + b;
