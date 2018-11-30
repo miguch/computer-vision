@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
     sources.reserve(images);
 
     for (int i = 0; i < images; i++) {
-        string fullPath = pathJoin(baseDir, to_string(i) + ".bmp");
+        string fullPath = pathJoin(baseDir, to_string(i) + ".jpg");
         auto img = CImg<unsigned char>(fullPath.c_str());
         //Make the image smaller to save some time
         if (img.height() > 768)

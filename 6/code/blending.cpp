@@ -38,14 +38,17 @@ bool isEmpty(const CImg<unsigned char> &img, int x, int y) {
 //Use poisson blend to blend two image
 CImg<unsigned char> blending::blend(CImg<unsigned char> &a, CImg<unsigned char> &b) {
 
-    // Find the center point of a and overlapping part.
-    double sum_a_x = 0;
-    double sum_a_y = 0;
-    int a_n = 0;
+    //Init to one to avoid division by zero
+    double sum_a_x = 1;
+    double sum_a_y = 1;
+    int a_n = 1;
 
-    double sum_overlap_x = 0;
-    double sum_overlap_y = 0;
-    int overlap_n = 0;
+    double sum_overlap_x = 1;
+    double sum_overlap_y = 1;
+    int overlap_n = 1;
+
+    int min_len = (a.width() < a.height()) ? a.width() : a.height();
+
     if (a.width() > a.height()) {
         for (int x = 0; x < a.width(); x++) {
             if (!isEmpty(a, x, a.height() / 2)) {
@@ -74,7 +77,7 @@ CImg<unsigned char> blending::blend(CImg<unsigned char> &a, CImg<unsigned char> 
         }
     }
 
-    int min_len = (a.width() < a.height()) ? a.width() : a.height();
+
 
     int n_level = floor(log2(min_len));
 

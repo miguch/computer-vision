@@ -69,63 +69,47 @@ namespace stitching {
         cout << endl;
 
         int startIndex = neighborList.back();
-        queue<int> unvisited;
-        unvisited.push(startIndex);
+
         auto stitched = warped[startIndex];
-        int prevIndex = startIndex;
 
-        while (!unvisited.empty()) {
-            int currentIndex = unvisited.front();
-            unvisited.pop();
-            vector<int>& adj = adjacents[currentIndex];
+        for (int i = neighborList.size() - 1; i > 0; i--) {
+            int currentIndex = neighborList[i];
+            vector<int> &adj = adjacents[currentIndex];
 
-            //Stitch all that need to be stitched
-            while (!adj.empty()) {
-                int newIndex = adj.front();
-                adj.erase(begin(adj));
+            int newIndex = neighborList[i - 1];
+            feature_matching fm1(features[currentIndex], features[newIndex]);
+            auto src2dst = fm1.run_matching();
 
-                auto anoIter = find(begin(adjacents[newIndex]), end(adjacents[newIndex]), currentIndex);
-                if (anoIter != end(adjacents[newIndex])) {
-                    adjacents[newIndex].erase(anoIter);
+            feature_matching fm2(features[newIndex], features[currentIndex]);
+            auto dst2src = fm2.run_matching();
+
+            if (src2dst.size() > dst2src.size()) {
+                dst2src.clear();
+                for (auto p : src2dst) {
+                    dst2src.push_back(make_pair(p.second, p.first));
                 }
-                unvisited.push(newIndex);
-                feature_matching fm1(features[currentIndex], features[newIndex]);
-                auto src2dst = fm1.run_matching();
-
-                feature_matching fm2(features[newIndex], features[currentIndex]);
-                auto dst2src = fm2.run_matching();
-
-                if (src2dst.size() > dst2src.size()) {
-                    dst2src.clear();
-                    for (auto p : src2dst) {
-                        dst2src.push_back(make_pair(p.second, p.first));
-                    }
-                } else {
-                    src2dst.clear();
-                    for (auto p : dst2src) {
-                        src2dst.push_back(make_pair(p.second, p.first));
-                    }
+            } else {
+                src2dst.clear();
+                for (auto p : dst2src) {
+                    src2dst.push_back(make_pair(p.second, p.first));
                 }
-
-                //Reverse
-                RANSAC forward(dst2src), backward(src2dst);
-
-                auto forwardMat = forward.run();
-                auto backwardMat = backward.run();
-
-                blending bl(stitched, warped[newIndex], forwardMat, backwardMat);
-
-                stitched = bl.run();
-
-                bl.updateFeatureWithMat(features[newIndex]);
-                bl.updateFeatureWithOffset(features[prevIndex]);
-
-                prevIndex = newIndex;
-
-                cout << " Stitched image " << currentIndex << " and " << newIndex << endl;
             }
 
+            //Reverse
+            RANSAC forward(dst2src), backward(src2dst);
 
+            auto forwardMat = forward.run();
+            auto backwardMat = backward.run();
+
+            blending bl(stitched, warped[newIndex], forwardMat, backwardMat);
+
+            stitched = bl.run();
+
+            bl.updateFeatureWithMat(features[newIndex]);
+            bl.updateFeatureWithOffset(features[currentIndex]);
+
+
+            cout << " Stitched image " << currentIndex << " and " << newIndex << endl;
 
         }
 
