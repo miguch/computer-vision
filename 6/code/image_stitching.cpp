@@ -30,6 +30,8 @@ namespace stitching {
             cout << "\r Extracting feature of image " << i << flush;
             spherical_warp sw(sources[i]);
             warped.push_back(sw.run_warping());
+
+//            warped.push_back(sources[i]);
             greys.push_back(utils::toGreyScale(warped[i]));
 
             feature_extraction fe(greys[i]);

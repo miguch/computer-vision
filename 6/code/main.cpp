@@ -42,8 +42,8 @@ int main(int argc, char** argv) {
         string fullPath = pathJoin(baseDir, to_string(i) + ".jpg");
         auto img = CImg<unsigned char>(fullPath.c_str());
         //Make the image smaller to save some time
-        if (img.height() > 768)
-            img.resize(768 * img.width() / img.height(), 768);
+        if (img.height() > 1024)
+            img.resize(1024 * img.width() / img.height(), 1024);
         sources.push_back(img);
     }
 
