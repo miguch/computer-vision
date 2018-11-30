@@ -16,12 +16,12 @@ class blending {
 public:
     typedef RANSAC::kPtPair kPtPair;
     const CImg<unsigned char> &src, &dst;
-    const RANSAC::homography_mat &matAB, &matBA;
+    const RANSAC::homography_mat &forwardMat, &backwardMat;
 private:
 
 public:
     blending(const CImg<unsigned char> &src, const CImg<unsigned char> &dst,
-             const RANSAC::homography_mat &matAB, const RANSAC::homography_mat &matBA);
+             const RANSAC::homography_mat &forwardMat, const RANSAC::homography_mat &backwardMat);
 
     CImg<unsigned char> run();
 

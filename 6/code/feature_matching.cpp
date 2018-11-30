@@ -13,7 +13,7 @@ extern "C" {
 
 feature_matching::feature_matching(const feature_matching::featSet &a, const feature_matching::featSet &b): aFeat(a), bFeat(b) {}
 
-const double thresh = 0.70;
+const double thresh = 0.50;
 
 std::vector<feature_matching::kPtPair> feature_matching::run_matching() {
     auto forest = vl_kdforest_new(VL_TYPE_FLOAT, 128, 1, VlDistanceL1);

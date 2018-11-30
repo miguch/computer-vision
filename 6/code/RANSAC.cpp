@@ -13,7 +13,6 @@ using namespace cimg_library;
 
 RANSAC::RANSAC(const std::vector<RANSAC::kPtPair> &kpPairs): kpPairs(kpPairs) {
     srand(static_cast<unsigned int>(time(nullptr)));
-    cout << "RANSAC size " << kpPairs.size() << endl;
 }
 
 
@@ -83,7 +82,7 @@ float RANSAC::getHomographyY(const RANSAC::homography_mat &mat, float x, float y
 }
 
 
-double ransacThresh = 10.0;
+double ransacThresh = 4.0;
 vector<RANSAC::kPtPair> RANSAC::getInliners(const RANSAC::homography_mat &mat, std::unordered_set<int> indexes) {
     vector<kPtPair> result;
     for (int ind = 0; ind < kpPairs.size(); ind++) {

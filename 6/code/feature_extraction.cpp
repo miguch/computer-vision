@@ -11,8 +11,8 @@ feature_extraction::feature_extraction(const CImg<unsigned char> &src): src(src)
 
 vl_sift_pix * feature_extraction::cimgToData() {
     vl_sift_pix* data = new vl_sift_pix[src.size()];
-    for (int i = 0, x = 0; x < src.width(); x++) {
-        for (int y = 0; y < src.height(); y++, i++) {
+    for (int i = 0, y = 0; y < src.height(); y++) {
+        for (int x = 0; x < src.width(); x++, i++) {
             data[i] = src(x, y);
         }
     }
@@ -30,7 +30,8 @@ map<array<float, 128>, VlSiftKeypoint> feature_extraction::run_extraction() {
             vl_sift_detect(filter);
             auto keyPointptr = filter->keys;
             for (int i = 0; i < filter->nkeys; i++) {
-                auto keyPoint = *(keyPointptr++);
+                auto keyPoint = *(keyPointptr);
+                ++keyPointptr;
 
                 double angles[4];
                 int angleCount = vl_sift_calc_keypoint_orientations(filter, angles, &keyPoint);

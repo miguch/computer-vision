@@ -33,8 +33,9 @@ namespace stitching {
             greys.push_back(utils::toGreyScale(warped[i]));
 
             feature_extraction fe(greys[i]);
+            auto feat = fe.run_extraction();
 
-            features.push_back(fe.run_extraction());
+            features.push_back(feat);
         }
         cout << endl << "Extraction completed" << endl;
 
@@ -66,11 +67,12 @@ namespace stitching {
             cout << i << " ";
         }
         cout << endl;
-        int middleIndex = neighborList[neighborList.size() / 2];
+
+        int startIndex = neighborList.back();
         queue<int> unvisited;
-        unvisited.push(middleIndex);
-        auto stitched = warped[middleIndex];
-        int prevIndex = middleIndex;
+        unvisited.push(startIndex);
+        auto stitched = warped[startIndex];
+        int prevIndex = startIndex;
 
         while (!unvisited.empty()) {
             int currentIndex = unvisited.front();
@@ -81,6 +83,7 @@ namespace stitching {
             while (!adj.empty()) {
                 int newIndex = adj.front();
                 adj.erase(begin(adj));
+
                 auto anoIter = find(begin(adjacents[newIndex]), end(adjacents[newIndex]), currentIndex);
                 if (anoIter != end(adjacents[newIndex])) {
                     adjacents[newIndex].erase(anoIter);
@@ -105,17 +108,12 @@ namespace stitching {
                 }
 
                 //Reverse
-                RANSAC ranAB(dst2src), ranBA(src2dst);
+                RANSAC forward(dst2src), backward(src2dst);
 
-                auto matAB = ranAB.run();
-                auto matBA = ranBA.run();
+                auto forwardMat = forward.run();
+                auto backwardMat = backward.run();
 
-                for (auto ele : matAB) {
-                    cout << ele << " ";
-                }
-                cout << endl;
-
-                blending bl(stitched, warped[newIndex], matAB, matBA);
+                blending bl(stitched, warped[newIndex], forwardMat, backwardMat);
 
                 stitched = bl.run();
 
@@ -125,7 +123,6 @@ namespace stitching {
                 prevIndex = newIndex;
 
                 cout << " Stitched image " << currentIndex << " and " << newIndex << endl;
-                //stitched.display();
             }
 
 

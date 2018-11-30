@@ -10,8 +10,11 @@
 
 using namespace std;
 
-blending::blending(const CImg<unsigned char> &src, const CImg<unsigned char> &dst, const RANSAC::homography_mat &matAB,
-                   const RANSAC::homography_mat &matBA): src(src), dst(dst), matAB(matAB), matBA(matBA) {}
+blending::blending(const CImg<unsigned char> &src, const CImg<unsigned char> &dst,
+                   const RANSAC::homography_mat &forwardMat,
+                   const RANSAC::homography_mat &backwardMat): src(src), dst(dst),
+                                                               forwardMat(forwardMat),
+                                                               backwardMat(backwardMat) {}
 
 CImg<unsigned char> blending::run() {
     int width = getWarpedWidth();
@@ -20,8 +23,8 @@ CImg<unsigned char> blending::run() {
     auto a = warpImage(width, height, getMinX(), getMinY());
     auto b = moveImage(width, height, getMinX(), getMinY());
 
-    a.display();
-    b.display();
+//    a.display();
+//    b.display();
     return blend(a, b);
 
 }
@@ -39,9 +42,7 @@ CImg<unsigned char> blending::blend(CImg<unsigned char> &a, CImg<unsigned char> 
     double sum_a_x = 0;
     double sum_a_y = 0;
     int a_n = 0;
-    //double sum_b_x = 0;
-    //double sum_b_y = 0;
-    //int b_n = 0;
+
     double sum_overlap_x = 0;
     double sum_overlap_y = 0;
     int overlap_n = 0;
@@ -52,10 +53,6 @@ CImg<unsigned char> blending::blend(CImg<unsigned char> &a, CImg<unsigned char> 
                 a_n++;
             }
 
-            //if (!isEmpty(b, x, b.height() / 2)) {
-            //	sum_b_x += x;
-            //	b_n++;
-            //}
 
             if (!isEmpty(a, x, a.height() / 2) && !isEmpty(b, x, a.height() / 2)) {
                 sum_overlap_x += x;
@@ -178,8 +175,8 @@ CImg<unsigned char> blending::blend(CImg<unsigned char> &a, CImg<unsigned char> 
 }
 
 int blending::getWarpedHeight() {
-    auto ys = {getWarpedY(0, 0, matAB), getWarpedY(0, dst.height() - 1, matAB),
-               getWarpedY(dst.width() - 1, 0, matAB), getWarpedY(dst.width() - 1, dst.height() - 1, matAB)};
+    auto ys = {getWarpedY(0, 0, forwardMat), getWarpedY(0, dst.height() - 1, forwardMat),
+               getWarpedY(dst.width() - 1, 0, forwardMat), getWarpedY(dst.width() - 1, dst.height() - 1, forwardMat)};
     double min_y = *min_element(begin(ys), end(ys));
     double max_y = *max_element(begin(ys), end(ys));
 
@@ -189,8 +186,8 @@ int blending::getWarpedHeight() {
 }
 
 int blending::getWarpedWidth() {
-    auto xs = {getWarpedX(0, 0, matAB), getWarpedX(0, dst.height() - 1, matAB),
-               getWarpedX(dst.width() - 1, 0, matAB), getWarpedX(dst.width() - 1, dst.height() - 1, matAB)};
+    auto xs = {getWarpedX(0, 0, forwardMat), getWarpedX(0, dst.height() - 1, forwardMat),
+               getWarpedX(dst.width() - 1, 0, forwardMat), getWarpedX(dst.width() - 1, dst.height() - 1, forwardMat)};
     double min_x = *min_element(begin(xs), end(xs));
     double max_x = *max_element(begin(xs), end(xs));
 
@@ -208,16 +205,16 @@ double blending::getWarpedX(double x, double y, const RANSAC::homography_mat& ma
 }
 
 double blending::getMinX() {
-    auto xs = {getWarpedX(0, 0, matAB), getWarpedX(0, dst.height() - 1, matAB),
-               getWarpedX(dst.width() - 1, 0, matAB), getWarpedX(dst.width() - 1, dst.height() - 1, matAB)};
+    auto xs = {getWarpedX(0, 0, forwardMat), getWarpedX(0, dst.height() - 1, forwardMat),
+               getWarpedX(dst.width() - 1, 0, forwardMat), getWarpedX(dst.width() - 1, dst.height() - 1, forwardMat)};
     double min_x = *min_element(begin(xs), end(xs));
 
     return min_x < 0 ? min_x : 0;
 }
 
 double blending::getMinY() {
-    auto ys = {getWarpedY(0, 0, matAB), getWarpedY(0, dst.height() - 1, matAB),
-               getWarpedY(dst.width() - 1, 0, matAB), getWarpedY(dst.width() - 1, dst.height() - 1, matAB)};
+    auto ys = {getWarpedY(0, 0, forwardMat), getWarpedY(0, dst.height() - 1, forwardMat),
+               getWarpedY(dst.width() - 1, 0, forwardMat), getWarpedY(dst.width() - 1, dst.height() - 1, forwardMat)};
     double min_y = *min_element(begin(ys), end(ys));
 
     return min_y < 0 ? min_y : 0;
@@ -227,8 +224,8 @@ void blending::updateFeatureWithMat(std::map<std::array<float, 128>, VlSiftKeypo
     float offsetX = getMinX(), offsetY = getMinY();
     for (auto & feat : feature) {
         float x = feat.second.x, y = feat.second.y;
-        feat.second.x = getWarpedX(x, y, matAB) + offsetX;
-        feat.second.y = getWarpedY(x, y, matAB) + offsetY;
+        feat.second.x = getWarpedX(x, y, forwardMat) - offsetX;
+        feat.second.y = getWarpedY(x, y, forwardMat) - offsetY;
         feat.second.ix = int(feat.second.x);
         feat.second.iy = int(feat.second.y);
     }
@@ -247,12 +244,13 @@ void blending::updateFeatureWithOffset(std::map<std::array<float, 128>, VlSiftKe
 CImg<unsigned char> blending::warpImage(int width, int height, int offset_x, int offset_y) {
     CImg<unsigned char> result(width, height, 1, dst.spectrum(), 0);
     cimg_forXY(result, x, y) {
-            int dst_x = getWarpedX(x + offset_y, y + offset_x, matBA);
-            int dst_y = getWarpedY(x + offset_y, y + offset_x, matBA);
+            //Use backward matrix to calculate the correct pos in dst image
+            int dst_x = getWarpedX(x + offset_y, y + offset_x, backwardMat);
+            int dst_y = getWarpedY(x + offset_y, y + offset_x, backwardMat);
 
             if (dst_x >= 0 && dst_x < dst.width() && dst_y >= 0 && dst_y < dst.height()) {
                 for (int i = 0; i < dst.spectrum(); i++) {
-                    result(x, y, i) = utils::interpolate(dst, x, y, i);
+                    result(x, y, i) = utils::interpolate(dst, dst_x, dst_y, i);
                 }
             }
         }
