@@ -99,6 +99,12 @@
 		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/6/code/blending.h">
 			<Option target="panorama-mac"/>
 		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/6/code/cylindrical_warp.cpp">
+			<Option target="panorama-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/6/code/cylindrical_warp.h">
+			<Option target="panorama-mac"/>
+		</Unit>
 		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/6/code/feature_extraction.cpp">
 			<Option target="panorama-mac"/>
 		</Unit>

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "spherical_warp.h"
+#include "cylindrical_warp.h"
 #include "utils.h"
 #include "feature_extraction.h"
 #include "image_stitching.h"

@@ -73,11 +73,11 @@ std::array<double, 8> RANSAC::getHomography(const std::vector<feature_matching::
     return {x(0, 0), x(0, 1), x(0, 2), x(0, 3), y(0, 0), y(0, 1), y(0, 2), y(0, 3)};
 }
 
-float RANSAC::getHomographyX(const RANSAC::homography_mat &mat, float x, float y) {
+double RANSAC::getHomographyX(const RANSAC::homography_mat &mat, double x, double y) {
     return mat[0] * x + mat[1] * y + mat[2] * x * y + mat[3];
 }
 
-float RANSAC::getHomographyY(const RANSAC::homography_mat &mat, float x, float y) {
+double RANSAC::getHomographyY(const RANSAC::homography_mat &mat, double x, double y) {
     return mat[4] * x + mat[5] * y + mat[6] * x * y + mat[7];
 }
 
@@ -90,11 +90,11 @@ vector<RANSAC::kPtPair> RANSAC::getInliners(const RANSAC::homography_mat &mat, s
             continue;
         }
 
-        float x = kpPairs[ind].second.x;
-        float y = kpPairs[ind].second.y;
+        double x = kpPairs[ind].second.x;
+        double y = kpPairs[ind].second.y;
 
-        float ax = getHomographyX(mat, kpPairs[ind].first.x, kpPairs[ind].first.y);
-        float ay = getHomographyY(mat, kpPairs[ind].first.x, kpPairs[ind].first.y);
+        double ax = getHomographyX(mat, kpPairs[ind].first.x, kpPairs[ind].first.y);
+        double ay = getHomographyY(mat, kpPairs[ind].first.x, kpPairs[ind].first.y);
 
         double dist = sqrt(pow(ax - x, 2) + pow(ay - y, 2));
 

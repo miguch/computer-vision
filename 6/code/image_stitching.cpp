@@ -9,9 +9,10 @@
 #include "utils.h"
 #include "feature_extraction.h"
 #include "feature_matching.h"
-#include "spherical_warp.h"
+#include "cylindrical_warp.h"
 #include "blending.h"
 #include "neighboring_translation.h"
+#include "spherical_warp.h"
 #include "RANSAC.h"
 
 using namespace std;
@@ -28,8 +29,11 @@ namespace stitching {
 
         for (int i = 0; i < sources.size(); i++) {
             cout << "\r Extracting feature of image " << i << flush;
-            spherical_warp sw(sources[i]);
-            warped.push_back(sw.run_warping());
+            cylindrical_warp cw(sources[i]);
+            warped.push_back(cw.run_warping());
+
+//            spherical_warp sw(sources[i]);
+//            warped.push_back(sw.run_warping());
 
 //            warped.push_back(sources[i]);
             greys.push_back(utils::toGreyScale(warped[i]));

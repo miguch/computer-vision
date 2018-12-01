@@ -227,9 +227,9 @@ double blending::getMinY() {
 }
 
 void blending::updateFeatureWithMat(std::map<std::array<float, 128>, VlSiftKeypoint> &feature) {
-    float offsetX = getMinX(), offsetY = getMinY();
+    double offsetX = getMinX(), offsetY = getMinY();
     for (auto &feat : feature) {
-        float x = feat.second.x, y = feat.second.y;
+        double x = feat.second.x, y = feat.second.y;
         feat.second.x = getWarpedX(x, y, forwardMat) - offsetX;
         feat.second.y = getWarpedY(x, y, forwardMat) - offsetY;
         feat.second.ix = int(feat.second.x);
@@ -238,7 +238,7 @@ void blending::updateFeatureWithMat(std::map<std::array<float, 128>, VlSiftKeypo
 }
 
 void blending::updateFeatureWithOffset(std::map<std::array<float, 128>, VlSiftKeypoint> &feature) {
-    float offsetX = getMinX(), offsetY = getMinY();
+    double offsetX = getMinX(), offsetY = getMinY();
     for (auto &feat : feature) {
         feat.second.x -= offsetX;
         feat.second.y -= offsetY;

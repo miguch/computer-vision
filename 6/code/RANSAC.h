@@ -25,8 +25,8 @@ public:
     typedef std::array<double, 8> homography_mat;
     static std::array<double, 8> getHomography(const std::vector<feature_matching::kPtPair> &pairs);
 
-    static float getHomographyX(const homography_mat &mat, float x, float y);
-    static float getHomographyY(const homography_mat &mat, float x, float y);
+    static double getHomographyX(const homography_mat &mat, double x, double y);
+    static double getHomographyY(const homography_mat &mat, double x, double y);
 
     std::vector<kPtPair> getInliners(const homography_mat &mat, std::unordered_set<int> indexes);
 

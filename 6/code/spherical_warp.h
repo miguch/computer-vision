@@ -10,13 +10,13 @@
 using namespace cimg_library;
 
 class spherical_warp {
-private:
-    const CImg<unsigned char> &src;
+    private:
+        const CImg<unsigned char> &src;
 
-public:
-    explicit spherical_warp(const CImg<unsigned char> &src);
+    public:
+        explicit spherical_warp(const CImg<unsigned char> &src);
 
-    CImg<unsigned char> run_warping();
+        CImg<unsigned char> run_warping();
 };
 
 
