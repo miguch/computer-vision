@@ -33,7 +33,8 @@ namespace stitching {
             warped.push_back(cw.run_warping());
 
 //            spherical_warp sw(sources[i]);
-//            warped.push_back(sw.run_warping());
+////            warped.push_back(sw.run_warping());
+//            sw.run_warping().display();
 
 //            warped.push_back(sources[i]);
             greys.push_back(utils::toGreyScale(warped[i]));

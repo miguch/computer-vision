@@ -82,7 +82,7 @@ CImg<unsigned char> blending::blend(CImg<unsigned char> &a, CImg<unsigned char> 
     }
 
 
-    int n_level = floor(log2(min_len));
+    int n_level = int(log2(min_len));
 
     vector<CImg<float>> a_pyramid(n_level);
     vector<CImg<float>> b_pyramid(n_level);
@@ -134,7 +134,6 @@ CImg<unsigned char> blending::blend(CImg<unsigned char> &a, CImg<unsigned char> 
                                                      mask[i - 1].spectrum(), 3);
     }
 
-    // Laplacian pyramids.
     for (int i = 0; i < n_level - 1; i++) {
         a_pyramid[i] = a_pyramid[i] - a_pyramid[i + 1].get_resize(a_pyramid[i].width(), a_pyramid[i].height(), 1,
                                                                   a_pyramid[i].spectrum(), 3);
