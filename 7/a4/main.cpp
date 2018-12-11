@@ -64,7 +64,7 @@ int main(int argc, char** argv) {
     grow.save("region-grow.jpg");
 
     auto outline = utils::getOutline(grow);
-
+    
     cout << "Performing Hough Transform" << endl;
     auto lines = houghTransform::line_transform(outline, 0.4);
 

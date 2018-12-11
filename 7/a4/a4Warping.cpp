@@ -85,45 +85,50 @@ std::vector<std::pair<int, int>> a4Warping::getIntersectsList(const std::vector<
     return res;
 }
 
-std::array<std::array<double, 3>, 3> a4Warping::getMatrix(const std::vector<std::pair<int, int>> &intersects) {
+std::array<double, 8> a4Warping::getMatrix(const std::vector<std::pair<int, int>> &intersects) {
     const double x[4] = {static_cast<double>(intersects[0].first), static_cast<double>(intersects[1].first),
                          static_cast<double>(intersects[2].first), static_cast<double>(intersects[3].first)};
     const double y[4] = {static_cast<double>(intersects[0].second), static_cast<double>(intersects[1].second),
                          static_cast<double>(intersects[2].second), static_cast<double>(intersects[3].second)};
-    double dx = x[0] - x[1] + x[2] - x[3];
-    double dy = y[0] - y[1] + y[2] - y[3];
-    if (dx == 0 && dy == 0) {
-        return {{
-            {x[1] - x[0], y[1] - y[0],      0},
-            {x[2] - x[1], y[2] - y[1],      0},
-            {x[0],        y[0],             1}
-        }};
-    }
-    double dx1 = x[1] - x[2];
-    double dx2 = x[2] - x[3];
-    double dy1 = y[1] - y[2];
-    double dy2 = y[2] - y[3];
+    CImg<double> A(4, 4, 1, 1, 0), bx(1, 4, 1, 1, 0), by(1, 4, 1, 1, 0);
 
-    double denominator = dx1 * dy2 - dx2 * dy1;
-    double a13 = (dx * dy2 - dx2 * dy) / denominator;
-    double a23 = (dx1 * dy - dx * dy1) / denominator;
-    return {{
-        {x[1] - x[0] + a13 * x[1], y[1] - y[0] + a13 * y[1], a13},
-        {x[3] - x[0] + a23 * x[3], y[3] - y[0] + a23* y[3],  a23},
-        {x[0],                     y[0],                     1}
-    }};
+    double width = sqrt(pow(intersects[0].first - intersects[1].first, 2) + pow(intersects[0].second - intersects[1].second, 2));
+    double height = sqrt(2) * width;
+
+    const double srcX[4] = {0, width, width, 0};
+    const double srcY[4] = {0, 0, height, height};
+
+    for (int i = 0; i < 4; i++) {
+        A(0, i) = srcX[i];
+        A(1, i) = srcY[i];
+        A(2, i) = srcX[i] * srcY[i];
+        A(3, i) = 1;
+        bx(0, i) = x[i];
+        by(0, i) = y[i];
+    }
+
+    CImg<double> mx = bx.get_solve(A);
+    CImg<double> my = by.get_solve(A);
+
+    return {mx(0, 0), mx(0, 1), mx(0, 2), mx(0, 3), my(0, 0), my(0, 1), my(0, 2), my(0, 3)};
 }
 
-CImg<unsigned char> a4Warping::transform(std::array<std::array<double, 3>, 3>& mat, const std::vector<std::pair<int, int>> &intersects) {
+double getMatX(const std::array<double, 8>& mat, double x, double y) {
+    return mat[0] * x + mat[1] * y + mat[2] * x * y + mat[3];
+}
+
+double getMayY(const std::array<double, 8>& mat, double x, double y) {
+    return mat[4] * x + mat[5] * y + mat[6] * x * y + mat[7];
+}
+
+CImg<unsigned char> a4Warping::transform(std::array<double, 8>& mat, const std::vector<std::pair<int, int>> &intersects) {
     double width = sqrt(pow(intersects[0].first - intersects[1].first, 2) + pow(intersects[0].second - intersects[1].second, 2));
     double height = sqrt(2) * width;
     CImg<unsigned char> res(width, height, 1, 3, 0);
 
     cimg_forXY(res, x, y) {
-        double rX = double(x) / width, rY = double(y) / height;
-        double denominator = mat[0][2] * rX + mat[1][2] * rY + mat[2][2];
-        double sX = (mat[0][0] * rX + mat[1][0] * rY + mat[2][0]) / denominator;
-        double sY = (mat[0][1] * rX + mat[1][1] * rY + mat[2][1]) / denominator;
+        double sX = getMatX(mat, x, y);
+        double sY = getMayY(mat, x, y);
         for (int c = 0; c < 3; c++) {
             res(x, y, c) = utils::interpolate(src, sX, sY, c);
         }

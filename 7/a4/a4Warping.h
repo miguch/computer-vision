@@ -24,9 +24,9 @@ public:
 
     std::vector<std::pair<int, int>> getIntersectsList(const std::vector<std::pair<int, int>>& intersects);
 
-    std::array<std::array<double, 3>, 3> getMatrix(const std::vector<std::pair<int, int>>& intersects);
+    std::array<double, 8> getMatrix(const std::vector<std::pair<int, int>>& intersects);
 
-    CImg<unsigned char> transform(std::array<std::array<double, 3>, 3>& mat, const std::vector<std::pair<int, int>> &intersects);
+    CImg<unsigned char> transform(std::array<double, 8>& mat, const std::vector<std::pair<int, int>> &intersects);
 
 
 };

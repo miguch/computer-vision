@@ -70,8 +70,9 @@ namespace houghTransform {
                 bool addNewLine = true;
                 for (auto &line : lines) {
                     //If the two line is close enough, see them as one line
-                    if (abs(line.second - x) < maxLength / 40 &&
-                        (abs(line.first - y) < 10 || abs(line.first - y) > houghSpaceSlice - 10)) {
+                    if (abs(line.second - x) < maxLength / 20 &&
+                        (abs(line.first - y) < 20 || abs(line.first - y) > houghSpaceSlice - 20 ||
+                            abs(abs(line.first - y) - 180) < 10)) {
                         addNewLine = false;
                         if (houghSpace[y][x] > houghSpace[line.first][line.second]) {
                             //Current line is more likely since it has more votes.
