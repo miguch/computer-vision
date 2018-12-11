@@ -6,6 +6,7 @@
 #include "regionGrow.h"
 #include "utils.h"
 #include "houghTransform.h"
+#include "a4Warping.h"
 #include <string>
 
 using namespace cimg_library;
@@ -71,10 +72,21 @@ int main(int argc, char** argv) {
 
     auto intersects = houghTransform::findIntersect(outline, kblines);
 
-    houghTransform::markEdges(kblines, intersects, src);
-    houghTransform::drawCornorPoints(intersects, src);
+    CImg<unsigned char> canvas = src;
+    houghTransform::markEdges(kblines, intersects, canvas);
+    houghTransform::drawCornorPoints(intersects, canvas);
 
-    src.save("outlined.jpg");
+    canvas.save("outlined.jpg");
+
+    cout << "Warping..." << endl;
+
+    a4Warping warper(src);
+
+    auto a4 = warper.runWarping(intersects);
+    a4.save("a4.jpg");
+
+    a4.display();
+
 
     return 0;
 }
