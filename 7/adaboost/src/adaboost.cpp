@@ -33,6 +33,12 @@ float adaboost::test(cv::Mat testCase) {
 
 adaboost::adaboost() {
     boost = ml::Boost::create();
+    boost->setBoostType(ml::Boost::REAL);
+    boost->setWeakCount(100);
+    boost->setWeightTrimRate(0.95);
+    boost->setMaxDepth(2);
+    boost->setUseSurrogates(false);
+    boost->setPriors(Mat());
 }
 
 void adaboost::load(const char *path) {

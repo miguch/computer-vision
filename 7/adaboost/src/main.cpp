@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
             auto testImg = data->getTestImageData(i);
             for (int k = 0; k < 4; k++) {
                 float predict = boosts[k].test(testImg);
-                result += pow(2, k) * predict;
+                result += pow(2, 4 - k - 1) * predict;
             }
             cout << "Predict: " << result << " Label: " << data->getTestLabel(i) << endl;
             if (result == data->getTestLabel(i)) ++corrects;
