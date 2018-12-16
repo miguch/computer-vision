@@ -75,20 +75,23 @@ void readLabelFile(ifstream& labelFile, vector<unsigned char>& labelList, Mat& l
     labelFile.read((char*)&imgSize, 4);
     magicNumber = reverseInt(magicNumber);
     imgSize = reverseInt(imgSize);
-    array<vector<unsigned char>, 4> binaries;
+    array<vector<unsigned char>, 10> labelSet;
     for (int i = 0; i < imgSize; i++) {
         unsigned char label;
         labelFile.read((char*)&label, 1);
         labelList.push_back(label);
-        auto binary = digitToBinary(label);
-        for (int k = 0; k < 4; k++) {
-            binaries[k].push_back(binary[k]);
+        for (int k = 0; k < 10; k++) {
+            if (k == label) {
+                labelSet[k].push_back(1);
+            } else {
+                labelSet[k].push_back(0);
+            }
         }
     }
     auto labels = Mat(imgSize, 1, CV_8UC1, labelList.data());
     labels.convertTo(labelMat, CV_32SC1);
-    for (int i = 0; i < 4; i++) {
-        auto bLabels = Mat(imgSize, 1, CV_8UC1, binaries[i].data());
+    for (int i = 0; i < 10; i++) {
+        auto bLabels = Mat(imgSize, 1, CV_8UC1, labelSet[i].data());
         Mat temp;
         bLabels.convertTo(temp, CV_32SC1);
         binaryLabels.push_back(temp);
@@ -162,5 +165,24 @@ cv::Mat mnistData::getTrainBinaryLabels(int index) {
 }
 
 int mnistData::getTestSize() {
-    return testLabels.size();
+    return static_cast<int>(testLabels.size());
+}
+
+cv::Mat mnistData::getTrainPart(int startIndex, int size) {
+    Mat result(size, trainSet.cols, CV_32FC1);
+    memcpy(result.data, trainSet.data + startIndex * trainSet.cols,
+           size * trainSet.cols * sizeof(float));
+    return result;
+}
+
+cv::Mat mnistData::getTrainLabelPart(int index, int startIndex, int size) {
+    auto binary = trainBinaryLabels[index];
+    Mat result(size, 1, CV_32SC1);
+    memcpy(result.data, binary.data + startIndex,
+           size * sizeof(int));
+    return result;
+}
+
+int mnistData::getTrainSize() {
+    return static_cast<int>(trainLabels.size());
 }

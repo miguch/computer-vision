@@ -14,11 +14,13 @@ private:
     const cv::Mat training, response;
     cv::Ptr<cv::ml::Boost> boost;
     cv::Ptr<cv::ml::SVM> svm;
+    void initBoost();
 
 public:
     adaboost(const cv::Mat&, const cv::Mat&);
     adaboost();
     void train();
+    void train(const cv::Mat& train, const cv::Mat& response);
     float test(cv::Mat testCase);
     void save(const char* path);
     void load(const char* path);

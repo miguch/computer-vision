@@ -37,8 +37,11 @@ public:
     cv::Mat getTestLabelMat();
     cv::Mat getTrainBinaryLabels(int index);
     cv::Mat getTestBinaryLabels(int index);
+    cv::Mat getTrainPart(int startIndex, int size);
+    cv::Mat getTrainLabelPart(int index, int startIndex, int size);
     int getTestSize();
     static std::shared_ptr<mnistData> getInstance();
+    int getTrainSize();
 
 };
 

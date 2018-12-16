@@ -13,13 +13,7 @@ using namespace cv;
 
 adaboost::adaboost(const cv::Mat & training, const cv::Mat & response): training(training),
                                                                         response(response) {
-    boost = ml::Boost::create();
-    boost->setBoostType(ml::Boost::REAL);
-    boost->setWeakCount(100);
-    boost->setWeightTrimRate(0.95);
-    boost->setMaxDepth(2);
-    boost->setUseSurrogates(false);
-    boost->setPriors(Mat());
+    initBoost();
 }
 
 
@@ -32,13 +26,7 @@ float adaboost::test(cv::Mat testCase) {
 }
 
 adaboost::adaboost() {
-    boost = ml::Boost::create();
-    boost->setBoostType(ml::Boost::REAL);
-    boost->setWeakCount(100);
-    boost->setWeightTrimRate(0.95);
-    boost->setMaxDepth(2);
-    boost->setUseSurrogates(false);
-    boost->setPriors(Mat());
+    initBoost();
 }
 
 void adaboost::load(const char *path) {
@@ -47,4 +35,18 @@ void adaboost::load(const char *path) {
 
 void adaboost::save(const char *path) {
     boost->save(path);
+}
+
+void adaboost::initBoost() {
+    boost = ml::Boost::create();
+    boost->setBoostType(ml::Boost::LOGIT);
+    boost->setWeakCount(100);
+    boost->setWeightTrimRate(0.95);
+    boost->setMaxDepth(2);
+    boost->setUseSurrogates(false);
+    boost->setPriors(Mat());
+}
+
+void adaboost::train(const cv::Mat &train, const cv::Mat &response) {
+    boost->train(train, ml::ROW_SAMPLE, response);
 }
