@@ -87,6 +87,12 @@
 		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/adaboost/src/mnistData.h">
 			<Option target="number-detection-mac"/>
 		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/adaboost/src/testUtils.cpp">
+			<Option target="number-detection-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/adaboost/src/testUtils.h">
+			<Option target="number-detection-mac"/>
+		</Unit>
 		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/adaboost/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

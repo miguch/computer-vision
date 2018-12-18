@@ -1,6 +1,7 @@
 #include <iostream>
 #include "mnistData.h"
 #include "adaboost.h"
+#include "testUtils.h"
 #include <cstring>
 #include <ctime>
 #include <array>
@@ -22,61 +23,31 @@ const char *boostPath[10] = {
         "./../mnist/boost9.xml",
 };
 
-double testBoost(array<adaboost, 10> &boosts) {
-    auto data = mnistData::getInstance();
-    int total = data->getTestSize();
-    int corrects = 0;
-    for (int i = 0; i < total; i++) {
-        int result = -1;
-        auto testImg = data->getTestImageData(i);
-        for (int k = 0; k < 10; k++) {
-            float predict = boosts[k].test(testImg);
-            if (predict != 0) {
-                result = k;
-            }
-        }
-        if (result == data->getTestLabel(i)) ++corrects;
-    }
-    return (double) corrects / total;
-}
-
-Mat getTestImage(const char* filename) {
-    Mat src = imread(filename);
-    Mat adjusted;
-    resize(src, adjusted, Size(28, 28));
-    Mat thr, gray, res;
-    cvtColor(adjusted, gray, COLOR_RGB2GRAY);
-//    gray = ~gray;
-    threshold(gray, thr, 130, 255, THRESH_BINARY_INV);
-    imshow("test", thr);
-
-    Mat temp(thr.rows * thr.cols, 1, CV_8UC1);
-    memcpy(temp.data, thr.data, sizeof(uchar) * thr.rows * thr.cols);
-    temp.convertTo(res, CV_32FC1);
-    return res / 255;
-}
-
 int main(int argc, char **argv) {
-    bool test = false;
+    bool test = false, a4 = false;
     string filename;
     if (argc >= 2 && strcmp(argv[1], "test") == 0) {
         test = true;
         if (argc >= 3) {
             filename = argv[2];
+            if (argc >= 4 && strcmp(argv[3], "a4") == 0) {
+                a4 = true;
+            }
         }
     }
 
     auto data = mnistData::getInstance();
     auto start = clock();
 
+    array<adaboost, 10> boosts = {
+            adaboost(), adaboost(),
+            adaboost(), adaboost(),
+            adaboost(), adaboost(),
+            adaboost(), adaboost(),
+            adaboost(), adaboost()
+    };
+
     if (!test) {
-        array<adaboost, 10> boosts = {
-                adaboost(), adaboost(),
-                adaboost(), adaboost(),
-                adaboost(), adaboost(),
-                adaboost(), adaboost(),
-                adaboost(), adaboost()
-        };
         cout << "Training started... " << endl;
         auto sample = data->getTrainSet();
         for (int i = 0; i < 10; i++) {
@@ -89,7 +60,6 @@ int main(int argc, char **argv) {
     } else {
         int total = data->getTestSize();
         int corrects = 0;
-        adaboost boosts[10];
         for (int k = 0; k < 10; k++) {
             boosts[k].load(boostPath[k]);
         }
@@ -104,14 +74,10 @@ int main(int argc, char **argv) {
                     }
                 }
                 cout << "Predict: " << result << " Label: " << data->getTestLabel(i) << endl;
-                if (result == 7 || result == 8 || result == 4 || result == 9) {
-                    imshow("", data->getTestImage(i));
-                    waitKey(0);
-                }
                 if (result == data->getTestLabel(i)) ++corrects;
             }
             cout << "Correct: " << (double) corrects / total * 100 << "%" << endl;
-        } else {
+        } else if (!a4) {
             Mat test = getTestImage(filename.c_str());
             int result = -1;
             for (int k = 0; k < 10; k++) {
@@ -122,6 +88,9 @@ int main(int argc, char **argv) {
             }
             cout << "Predict: " << result << endl;
             waitKey(0);
+        } else {
+            //A4 photo
+            testA4(filename.c_str(), boosts);
         }
     }
     cout << "Time: " << double(clock() - start) / CLOCKS_PER_SEC << "s." << endl;
