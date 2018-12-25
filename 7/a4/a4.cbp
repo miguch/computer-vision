@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="a4"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="a4-mac">
+				<Option output="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/bin/a4-mac" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/X11/include"/>
+					<Add directory="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/."/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 a4-mac"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="a4-mac/fast">
+				<Option output="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/bin/a4-mac" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/X11/include"/>
+					<Add directory="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/."/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 a4-mac/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/CImg.h">
+			<Option target="a4-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/a4Warping.cpp">
+			<Option target="a4-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/a4Warping.h">
+			<Option target="a4-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/houghTransform.cpp">
+			<Option target="a4-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/houghTransform.h">
+			<Option target="a4-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/kmeans.cpp">
+			<Option target="a4-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/kmeans.h">
+			<Option target="a4-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/main.cpp">
+			<Option target="a4-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/regionGrow.cpp">
+			<Option target="a4-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/regionGrow.h">
+			<Option target="a4-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/utils.cpp">
+			<Option target="a4-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/utils.h">
+			<Option target="a4-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/7/a4/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

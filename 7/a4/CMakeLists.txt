@@ -8,7 +8,9 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if (APPLE)
-    set (CMAKE_CXX_FLAGS "-lX11 -L/usr/X11/lib -I/usr/X11/include")
+    set (CMAKE_CXX_FLAGS "-lX11 ")
+    include_directories(/usr/X11/include)
+    link_directories(/usr/X11/lib)
     add_executable(a4-mac
             CImg.h main.cpp utils.cpp utils.h kmeans.cpp kmeans.h regionGrow.cpp regionGrow.h houghTransform.cpp houghTransform.h a4Warping.cpp a4Warping.h)
 endif (APPLE)

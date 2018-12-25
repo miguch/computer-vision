@@ -17,6 +17,10 @@ a4Warping::a4Warping(const CImg<unsigned char> &src): src(src) {
 //Run warping on source image with the input intersect points
 //Assume that intersects.size() == 4
 CImg<unsigned char> a4Warping::runWarping(const std::vector<std::pair<int, int>>& intersects) {
+    if (intersects.size() != 4) {
+        cerr << "Fail to warp!" << endl;
+        return CImg<unsigned char>();
+    }
     auto ptList = getIntersectsList(intersects);
     auto mat = getMatrix(ptList);
     return transform(mat, ptList);
@@ -30,7 +34,7 @@ void swapVal(T& a, T& b) {
     a = temp;
 }
 
-//Returns the intersects in the order of top-left, top-right, bottom-left, bottom-right
+//Returns the intersects in the order of top-left, top-right, bottom-right, bottom-left
 std::vector<std::pair<int, int>> a4Warping::getIntersectsList(const std::vector<std::pair<int, int>> &intersects) {
     //First find the point closest to (0,0) as one of the top points.
     //points is the sequence of point index in intersects
@@ -70,10 +74,11 @@ std::vector<std::pair<int, int>> a4Warping::getIntersectsList(const std::vector<
     //Calculate y = kx + b to see if we need to swap element.
     pt0 = intersects[points[0]];
     auto pt1 = intersects[points[1]];
+    auto pt3 = intersects[points[3]];
     double k = (pt1.second - pt0.second) / (pt1.first - pt0.first);
     double b = pt1.second - (pt1.first * k);
 
-    if ((k < 0 && b > 0 && pt0.first > pt1.first)) {
+    if ((k < 0 && b > 0 && pt0.first > pt1.first) || (k > 0 && pt0.second > pt3.second)) {
         swapVal(points[0], points[1]);
         swapVal(points[2], points[3]);
     }

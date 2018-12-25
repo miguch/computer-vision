@@ -47,6 +47,7 @@ int main(int argc, char** argv) {
     cout << "k = " <<  k << endl;
 
     CImg<unsigned char> src(filename);
+    src.save("source.jpg");
     auto blured = src.get_blur(16);
 
     kmeans km(blured);
@@ -64,9 +65,10 @@ int main(int argc, char** argv) {
     grow.save("region-grow.jpg");
 
     auto outline = utils::getOutline(grow);
+    outline.save("lines.jpg");
     
     cout << "Performing Hough Transform" << endl;
-    auto lines = houghTransform::line_transform(outline, 0.4);
+    auto lines = houghTransform::line_transform(outline, 0.25);
 
     auto kblines = houghTransform::polarToCartesian(lines);
 
