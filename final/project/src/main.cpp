@@ -80,15 +80,8 @@ int main(int argc, char **argv) {
 
         for (int i = lower; i < higher; i++) {
             auto filename = "a4/" + to_string(i) + ".jpg";
-            threads.emplace_back([&](int index, string file){
-                a4Images[index - lower].save(file.c_str());
-            }, i, filename);
+            a4Images[i - lower].save(filename.c_str());
         }
-
-        for (auto& t : threads) {
-            t.join();
-        }
-        threads.clear();
 
         cout << endl << "A4 complete." << endl;
     } else {
@@ -130,15 +123,8 @@ int main(int argc, char **argv) {
 
     for (int i = lower; i < higher; i++) {
         auto filename = "thresh/" + to_string(i) + ".jpg";
-        threads.emplace_back([&](int index, string file){
-            threshedImg.at(index - lower).save(file.c_str());
-        }, i, filename);
+        threshedImg.at(i - lower).save(filename.c_str());
     }
-
-    for (auto& t : threads) {
-        t.join();
-    }
-    threads.clear();
 
 
     return 0;
