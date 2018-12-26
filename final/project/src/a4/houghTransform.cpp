@@ -4,6 +4,7 @@
 
 #include "houghTransform.h"
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -60,6 +61,7 @@ namespace houghTransform {
             }
         }
 
+        vector<vector<int>> votes = vector<vector<int>>(houghSpaceSlice, vector<int>(maxLength, 0));
         /**********Part 3: Vote for lines********************/
         int thresh = int((double) maxHough * threshPercent);
         //θ-r pairs
@@ -67,6 +69,7 @@ namespace houghTransform {
         for (int y = 0; y < houghSpaceSlice; y++) {
             for (int x = 0; x < maxLength; x++) {
                 if (houghSpace[y][x] < thresh) continue;
+                if (y == 90 && x == 0) continue;
                 bool addNewLine = true;
                 for (auto &line : lines) {
                     //If the two line is close enough, see them as one line
@@ -78,16 +81,30 @@ namespace houghTransform {
                             //Current line is more likely since it has more votes.
                             line.first = y;
                             line.second = x;
+                            votes[y][x] = houghSpace[y][x] + votes[line.first][line.second];
+                        } else {
+                            votes[line.first][line.second] += houghSpace[y][x];
                         }
                     }
                 }
                 if (addNewLine) {
                     lines.push_back(make_pair(y, x));
+                    votes[y][x] = houghSpace[y][x];
                 }
             }
         }
 
-        return lines;
+        //larger first
+        sort(begin(lines), end(lines), [&](pair<int, int>& a, pair<int, int>& b){
+            return votes[a.first][a.second] > votes[b.first][b.second];
+        });
+
+//        for (auto li : lines) {
+//            auto ll = polarToCartesian({li})[0];
+//            cout << ll.first << " " << ll.second <<" "<< votes[li.first][li.second] << endl;
+//        }
+
+        return vector<pair<int, int>>(lines.begin(), lines.begin() + 4);
     }
 
     std::vector<std::pair<double, double>> polarToCartesian(const vector<std::pair<int, int>> &input) {
@@ -108,8 +125,8 @@ namespace houghTransform {
             for (int k = i + 1; k < lines.size(); k++) {
                 double x = (lines[k].second - lines[i].second) / (lines[i].first - lines[k].first);
                 double y = x * lines[k].first + lines[k].second;
-                if (x >= 0 && x < src.width() && y >= 0 && y < src.height()) {
-                    res.emplace_back((int) x, (int) y);
+                if (x >= -10 && x < src.width() && y >= -10 && y < src.height()) {
+                    res.emplace_back((int) std::max(0.0, x), (int) std::max(0.0, y));
                 }
             }
         }

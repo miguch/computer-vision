@@ -5,7 +5,7 @@
 		<Option title="recognition"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\..\..\..\usr\local\share\;CMake Files\..\..\..\..\..\..\..\..\usr\local\share\OpenCV\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project"/>
@@ -47,6 +47,7 @@
 					<Add directory="/usr/X11/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/."/>
+					<Add directory="/usr/local/include/opencv"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/Makefile&quot;  VERBOSE=1 recognition-mac"/>
@@ -65,6 +66,7 @@
 					<Add directory="/usr/X11/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/."/>
+					<Add directory="/usr/local/include/opencv"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/Makefile&quot;  VERBOSE=1 recognition-mac/fast"/>
@@ -75,6 +77,18 @@
 			</Target>
 		</Build>
 		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/CImg.h">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/OpenCV_utils.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/OpenCV_utils.h">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/a4/a4Tools.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/a4/a4Tools.h">
 			<Option target="recognition-mac"/>
 		</Unit>
 		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/a4/a4Warping.cpp">
@@ -101,10 +115,16 @@
 		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/a4/regionGrow.h">
 			<Option target="recognition-mac"/>
 		</Unit>
-		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/a4/tools.cpp">
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/adaboost/adaboost.cpp">
 			<Option target="recognition-mac"/>
 		</Unit>
-		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/a4/tools.h">
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/adaboost/adaboost.h">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/adaboost/adaboostTools.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/adaboost/adaboostTools.h">
 			<Option target="recognition-mac"/>
 		</Unit>
 		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/histogram/HistoEqual.cpp">
@@ -114,6 +134,12 @@
 			<Option target="recognition-mac"/>
 		</Unit>
 		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/main.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/segmentation/segmentTools.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/segmentation/segmentTools.h">
 			<Option target="recognition-mac"/>
 		</Unit>
 		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/src/segmentation/segmentation.cpp">
@@ -130,6 +156,18 @@
 		</Unit>
 		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/../../../../../../../../usr/local/share/OpenCV/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/../../../../../../../../usr/local/share/OpenCV/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/../../../../../../../../usr/local/share/OpenCV/OpenCVModules-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/../../../../../../../../usr/local/share/OpenCV/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\..\usr\local\share\OpenCV\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

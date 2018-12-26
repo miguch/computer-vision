@@ -5,6 +5,9 @@
 #include "utils.h"
 #include <cmath>
 #include <iostream>
+#include <stack>
+#include <fstream>
+#include <vector>
 
 unsigned char utils::interpolate(const CImg<unsigned char> &src, double x, double y, int channel) {
     int x1 = int(x), y1 = int(y);
@@ -278,4 +281,96 @@ CImg<unsigned char> utils::reverseAdaptiveThreshold(const CImg<unsigned char> &i
         }
     }
     return result;
+}
+
+void removePointsByNeighbor(CImg<unsigned char> &img,
+                            std::stack<std::pair<int, int>>& seeds,
+                            CImg<bool>& used) {
+
+    while (!seeds.empty()) {
+        auto curr = seeds.top();
+        seeds.pop();
+        if (img(curr.first, curr.second) != 255) continue;
+        img(curr.first, curr.second) = 0;
+        for (int i = -1; i <= 1; i++) {
+            for (int k = -1; k <= 1; k++) {
+                if (i == 0 && k == 0) continue;
+                int nx = curr.first + i;
+                int ny = curr.second + k;
+                nx = std::min(img.width() - 1, std::max(nx, 0));
+                ny = std::min(img.height() - 1, std::max(ny, 0));
+                if (used(nx, ny)) continue;
+                if (img(nx, ny) == 255) {
+                    seeds.push({nx, ny});
+                }
+                used(nx, ny) = true;
+            }
+        }
+    }
+
+}
+
+//Remove edges bright bar produced in reverse threshold due to
+//not perfect a4 adjustment.
+void utils::removeEdges(CImg<unsigned char> &img) {
+    CImg<unsigned char> result(img.width(), img.height(), 1, 1, 0);
+    CImg<bool> used(img.width(), img.height(), 1, 1, false);
+
+    typedef std::pair<int, int> pt;
+    std::vector<int> xs = {0, img.width() - 1};
+    std::vector<int> ys = {0, img.height() - 1};
+
+    for (int x : xs) {
+        for (int y = 0; y < img.height(); y++) {
+            if (img(x, y) == 255) {
+                std::stack<pt> seeds;
+                seeds.push({x, y});
+                removePointsByNeighbor(img, seeds, used);
+            }
+        }
+    }
+
+    for (int y : ys) {
+        for (int x = 0; x < img.width(); x++) {
+            if (img(x, y) == 255) {
+                std::stack<pt> seeds;
+                seeds.push({x, y});
+                removePointsByNeighbor(img, seeds, used);
+            }
+        }
+    }
+
+}
+
+
+//Add Black area to shorter coordinate to turn image to square so that
+// it will not change shape in classification
+CImg<unsigned char> utils::toSquareImage(const CImg<unsigned char> &src) {
+    int baseX = 0, baseY = 0;
+    if (src.width() > src.height()) {
+        baseY = src.width() - src.height();
+    } else if (src.width() < src.height()) {
+        baseX = src.height() - src.width();
+    }
+    CImg<unsigned char> result(src.width() + baseX, src.height() + baseY, 1, 1, 0);
+    baseX /= 2;
+    baseY /= 2;
+    cimg_forXY(src, x, y) {
+        result(x + baseX, y + baseY) = src(x, y);
+    }
+    return result;
+}
+
+void utils::saveToCSV(const char *filename, const std::vector<std::vector<int>> &list) {
+    std::ofstream fs(filename);
+
+    for (const auto &l: list) {
+        for (int i = 0; i < l.size(); i++) {
+            fs << l[i];
+            if (i != l.size() - 1) {
+                fs << ',';
+            }
+        }
+        fs << std::endl;
+    }
 }

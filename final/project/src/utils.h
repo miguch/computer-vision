@@ -40,6 +40,12 @@ namespace utils {
 
     CImg<unsigned char> adaptiveThreshold(const CImg<unsigned char> &img, double thresh);
     CImg<unsigned char> reverseAdaptiveThreshold(const CImg<unsigned char> &img, double thresh);
+
+    void removeEdges(CImg<unsigned char> &img);
+
+    CImg<unsigned char> toSquareImage(const CImg<unsigned char> &src);
+
+    void saveToCSV(const char* filename, const std::vector<std::vector<int>> &list);
 };
 
 
