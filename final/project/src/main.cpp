@@ -12,7 +12,7 @@
 using namespace cimg_library;
 using namespace std;
 
-void getIndexedA4(shared_ptr<CImg<unsigned char>> src, vector<CImg<unsigned char>>& imgList,
+void getIndexedA4(shared_ptr<CImg<unsigned char>> src, vector<CImg<unsigned char>> &imgList,
                   int index) {
     auto a4 = adjustA4Image(*src, to_string(index).c_str());
     imgList.at(index) = a4;
@@ -87,7 +87,11 @@ int main(int argc, char **argv) {
         threads.clear();
 
         for (int i = lower; i < higher; i++) {
+#ifdef _WIN32
+            auto filename = pathJoin("a4", to_string(i) + ".bmp");
+#else
             auto filename = pathJoin("a4", to_string(i) + ".jpg");
+#endif
             a4Images[i - lower].save(filename.c_str());
         }
 
@@ -95,8 +99,12 @@ int main(int argc, char **argv) {
     } else {
         cout << "Skip A4." << endl;
         for (int i = lower; i < higher; i++) {
+#ifdef _WIN32
+            auto filename = pathJoin("a4", to_string(i) + ".bmp");
+#else
             auto filename = pathJoin("a4", to_string(i) + ".jpg");
-            threads.emplace_back([&](int index, string file){
+#endif
+            threads.emplace_back([&](int index, string file) {
                 a4Images.at(index - lower) = CImg<unsigned char>(file.c_str());
             }, i, filename);
         }
@@ -124,15 +132,20 @@ int main(int argc, char **argv) {
         threads.push_back(move(worker));
     }
 
-    for (auto& t : threads) {
+    for (auto &t : threads) {
         t.join();
     }
     threads.clear();
 
     for (int i = lower; i < higher; i++) {
+#ifdef _WIN32
+        auto filename = pathJoin("thresh", to_string(i) + ".bmp");
+#else
         auto filename = pathJoin("thresh", to_string(i) + ".jpg");
-        threshedImg.at(i - lower).save_jpeg(filename.c_str());
+#endif
+        threshedImg.at(i - lower).save(filename.c_str());
     }
+
 
 
     return 0;
