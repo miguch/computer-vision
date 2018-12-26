@@ -24,7 +24,6 @@ if (APPLE)
     include_directories(/usr/X11/include ${Boost_INCLUDE_DIR})
     link_directories(/usr/X11/lib )
     link_libraries(X11)
-    FIND_PACKAGE( Boost REQUIRED )
     add_executable(recognition-mac
             ${ROOT_SOURCE} ${ROOT_HEADER} ${A4_SOURCE} ${A4_HEADER}
             ${SEGMENTATION_SOURCE} ${SEGMENTATION_HEADER} ${HISTOGRAM_SOURCE}

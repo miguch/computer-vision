@@ -25,6 +25,14 @@ void getThreshImg(const CImg<unsigned char> &src, vector<CImg<unsigned char>> &i
     imgList.at(index) = utils::reverseAdaptiveThreshold(grey, thresh);
 }
 
+string pathJoin(string base, string file) {
+#ifdef _WIN32
+    return base + "\\" + file;
+#else
+    return base + "/" + file;
+#endif
+}
+
 int main(int argc, char **argv) {
     if (argc <= 1) {
         cerr << "No file number specified!" << endl;
@@ -63,7 +71,7 @@ int main(int argc, char **argv) {
                 threads.pop_front();
             }
 
-            auto filename = "testcases/" + to_string(i) + ".jpg";
+            auto filename = pathJoin("testcases", to_string(i) + ".jpg");
 
             shared_ptr<CImg<unsigned char>> src(new CImg<unsigned char>(filename.c_str()));
 
@@ -79,7 +87,7 @@ int main(int argc, char **argv) {
         threads.clear();
 
         for (int i = lower; i < higher; i++) {
-            auto filename = "a4/" + to_string(i) + ".jpg";
+            auto filename = pathJoin("a4", to_string(i) + ".jpg");
             a4Images[i - lower].save(filename.c_str());
         }
 
@@ -87,7 +95,7 @@ int main(int argc, char **argv) {
     } else {
         cout << "Skip A4." << endl;
         for (int i = lower; i < higher; i++) {
-            auto filename = "a4/" + to_string(i) + ".jpg";
+            auto filename = pathJoin("a4", to_string(i) + ".jpg");
             threads.emplace_back([&](int index, string file){
                 a4Images.at(index - lower) = CImg<unsigned char>(file.c_str());
             }, i, filename);
@@ -122,8 +130,8 @@ int main(int argc, char **argv) {
     threads.clear();
 
     for (int i = lower; i < higher; i++) {
-        auto filename = "thresh/" + to_string(i) + ".jpg";
-        threshedImg.at(i - lower).save(filename.c_str());
+        auto filename = pathJoin("thresh", to_string(i) + ".jpg");
+        threshedImg.at(i - lower).save_jpeg(filename.c_str());
     }
 
 
