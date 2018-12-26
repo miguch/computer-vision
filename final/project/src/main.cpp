@@ -87,11 +87,7 @@ int main(int argc, char **argv) {
         threads.clear();
 
         for (int i = lower; i < higher; i++) {
-#ifdef _WIN32
-            auto filename = pathJoin("a4", to_string(i) + ".bmp");
-#else
             auto filename = pathJoin("a4", to_string(i) + ".jpg");
-#endif
             a4Images[i - lower].save(filename.c_str());
         }
 
@@ -99,11 +95,7 @@ int main(int argc, char **argv) {
     } else {
         cout << "Skip A4." << endl;
         for (int i = lower; i < higher; i++) {
-#ifdef _WIN32
-            auto filename = pathJoin("a4", to_string(i) + ".bmp");
-#else
             auto filename = pathJoin("a4", to_string(i) + ".jpg");
-#endif
             threads.emplace_back([&](int index, string file) {
                 a4Images.at(index - lower) = CImg<unsigned char>(file.c_str());
             }, i, filename);
@@ -138,11 +130,7 @@ int main(int argc, char **argv) {
     threads.clear();
 
     for (int i = lower; i < higher; i++) {
-#ifdef _WIN32
-        auto filename = pathJoin("thresh", to_string(i) + ".bmp");
-#else
         auto filename = pathJoin("thresh", to_string(i) + ".jpg");
-#endif
         threshedImg.at(i - lower).save(filename.c_str());
     }
 
