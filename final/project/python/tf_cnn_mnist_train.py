@@ -8,6 +8,8 @@ import tensorflow as tf
 from mnist_data import mnist_data
 from tf_cnn_model import cnn_model_fn
 
+tf.logging.set_verbosity(tf.logging.INFO)
+
 def main(unused_argv):
   print('Trainning with MNIST dataset...')
   mnist = mnist_data()
@@ -26,13 +28,13 @@ def main(unused_argv):
   train_input_fn = tf.estimator.inputs.numpy_input_fn(
       x={"x": train_data},
       y=train_labels,
-      batch_size=100,
+      batch_size=200,
       num_epochs=None,
       shuffle=True)
 
   mnist_classifier.train(
       input_fn=train_input_fn,
-      steps=50000,
+      steps=30000,
       hooks=[logging_hook])
 
   # Evaluate the model and print results
