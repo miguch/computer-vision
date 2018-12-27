@@ -17,6 +17,16 @@ using namespace std;
 
 void getIndexedA4(shared_ptr<CImg<unsigned char>> src, vector<CImg<unsigned char>> &imgList,
                   int index) {
+    //rotate
+    if (src->width() > src->height()) {
+        CImg<unsigned char> rotated(src->height(), src->width(), src->spectrum());
+        cimg_forXY(*src, x, y) {
+                for (int i = 0; i < src->spectrum(); i++) {
+                    rotated(y, x, i) = (*src)(x, src->height() - 1 - y, i);
+                }
+            }
+        *src = rotated;
+    }
     auto a4 = a4Tools::adjustA4Image(*src, to_string(index).c_str());
     imgList.at(index) = a4;
 }
