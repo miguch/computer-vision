@@ -7,6 +7,7 @@
 
 #include "CImg.h"
 #include <cstdint>
+#include <vector>
 #include <array>
 
 using namespace cimg_library;
