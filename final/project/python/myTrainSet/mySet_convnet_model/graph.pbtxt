@@ -775,12 +775,6 @@ node {
     }
   }
   attr {
-    key: "Truncate"
-    value {
-      b: false
-    }
-  }
-  attr {
     key: "_output_shapes"
     value {
       list {
@@ -6295,6 +6289,7 @@ node {
     value {
       list {
         shape {
+          unknown_rank: true
         }
       }
     }
@@ -6438,6 +6433,7 @@ node {
     value {
       list {
         shape {
+          unknown_rank: true
         }
       }
     }
@@ -6936,9 +6932,7 @@ node {
     value {
       list {
         shape {
-          dim {
-            size: 200
-          }
+          unknown_rank: true
         }
       }
     }
@@ -7026,6 +7020,7 @@ node {
     value {
       list {
         shape {
+          unknown_rank: true
         }
       }
     }
@@ -7812,12 +7807,7 @@ node {
     value {
       list {
         shape {
-          dim {
-            size: 200
-          }
-          dim {
-            size: 1024
-          }
+          unknown_rank: true
         }
       }
     }
@@ -7991,6 +7981,7 @@ node {
     value {
       list {
         shape {
+          unknown_rank: true
         }
       }
     }
@@ -8725,16 +8716,16 @@ node {
       list {
         shape {
           dim {
-            size: 200
+            size: -1
           }
           dim {
-            size: 14
+            size: -1
           }
           dim {
-            size: 14
+            size: -1
           }
           dim {
-            size: 32
+            size: -1
           }
         }
       }
@@ -8799,16 +8790,16 @@ node {
       list {
         shape {
           dim {
-            size: 5
+            size: -1
           }
           dim {
-            size: 5
+            size: -1
           }
           dim {
-            size: 32
+            size: -1
           }
           dim {
-            size: 64
+            size: -1
           }
         }
       }
@@ -9211,16 +9202,16 @@ node {
       list {
         shape {
           dim {
-            size: 200
+            size: -1
           }
           dim {
-            size: 28
+            size: -1
           }
           dim {
-            size: 28
+            size: -1
           }
           dim {
-            size: 1
+            size: -1
           }
         }
       }
@@ -9285,16 +9276,16 @@ node {
       list {
         shape {
           dim {
-            size: 5
+            size: -1
           }
           dim {
-            size: 5
+            size: -1
           }
           dim {
-            size: 1
+            size: -1
           }
           dim {
-            size: 32
+            size: -1
           }
         }
       }
@@ -12939,7 +12930,7 @@ node {
         dtype: DT_STRING
         tensor_shape {
         }
-        string_val: "_temp_43a8385e8e9b4a3986060e9bea5726fc/part"
+        string_val: "_temp_ea0650334569491d8843bcff7cfbc30c/part"
       }
     }
   }
@@ -13859,5 +13850,5 @@ node {
   input: "^save/restore_shard"
 }
 versions {
-  producer: 27
+  producer: 26
 }
