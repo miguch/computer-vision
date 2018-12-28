@@ -11,7 +11,7 @@ class mySet_data:
 
     def readImgSet(self, path):
         fileCounts = []
-        with open(path, 'r') as digNums:
+        with open(os.path.join(path, 'digits.txt'), 'r') as digNums:
             fileCounts = [int(c) for c in next(digNums).split()]
         imagesCount = 0
         for c in fileCounts:
@@ -21,7 +21,7 @@ class mySet_data:
         index = 0
         for i in range(10):
             for k in range(fileCounts[i]):
-                filename = os.path.join(int(i), int(k) + '.jpg')
+                filename = os.path.join('./myTrainSet', str(i), str(k) + '.jpg')
                 img = Image.open(filename)
                 imgData = np.asarray(img, dtype=np.uint8)
                 imagesData[index] = imgData.reshape((1, 784))

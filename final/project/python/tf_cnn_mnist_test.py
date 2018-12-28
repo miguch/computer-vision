@@ -5,8 +5,8 @@ from __future__ import print_function
 
 import numpy as np
 import tensorflow as tf
-from mnist_data import mnist_data
-from tf_cnn_model import cnn_model_fn, modelDir
+from mnist_data import mnist_data, modelDir
+from tf_cnn_model import cnn_model_fn
 
 
 def main(unused_argv):

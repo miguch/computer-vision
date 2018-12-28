@@ -14,7 +14,7 @@ tf.logging.set_verbosity(tf.logging.INFO)
 
 
 def main(unused_argv):
-    print('Trainning with MNIST dataset...')
+    print('Trainning with My dataset...')
     myData = data()
     mnist = mData()
     train_data = np.asarray(myData.trainImg, dtype=np.float32) / 255
@@ -43,7 +43,7 @@ def main(unused_argv):
 
     # Evaluate the model and print results
     eval_input_fn = tf.estimator.inputs.numpy_input_fn(
-        x={"x": eval_data}, y=eval_labels, num_epochs=3, shuffle=False)
+        x={"x": eval_data}, y=eval_labels, num_epochs=1, shuffle=False)
     eval_results = mnist_classifier.evaluate(input_fn=eval_input_fn)
 
     print(eval_results)
