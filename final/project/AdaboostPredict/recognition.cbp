@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="recognition"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\..\..\..\..\usr\local\share\;CMake Files\..\..\..\..\..\..\..\..\..\usr\local\share\OpenCV\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="recognition-mac">
+				<Option output="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/bin/recognition-mac" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/X11/include"/>
+					<Add directory="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/."/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/include/opencv"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 recognition-mac"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="recognition-mac/fast">
+				<Option output="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/bin/recognition-mac" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/X11/include"/>
+					<Add directory="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/."/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/include/opencv"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 recognition-mac/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/CImg.h">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/OpenCV_utils.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/OpenCV_utils.h">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/a4/a4Tools.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/a4/a4Tools.h">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/a4/a4Warping.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/a4/a4Warping.h">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/a4/houghTransform.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/a4/houghTransform.h">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/a4/kmeans.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/a4/kmeans.h">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/a4/regionGrow.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/a4/regionGrow.h">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/adaboost/adaboost.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/adaboost/adaboost.h">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/adaboost/adaboostTools.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/adaboost/adaboostTools.h">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/histogram/HistoEqual.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/histogram/HistoEqual.h">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/main.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/segmentation/segmentTools.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/segmentation/segmentTools.h">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/segmentation/segmentation.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/segmentation/segmentation.h">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/utils.cpp">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/src/utils.h">
+			<Option target="recognition-mac"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/../../../../../../../../../usr/local/share/OpenCV/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/../../../../../../../../../usr/local/share/OpenCV/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/../../../../../../../../../usr/local/share/OpenCV/OpenCVModules-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/Users/mig/Desktop/大三上/computer-vision/assignment/final/project/AdaboostPredict/../../../../../../../../../usr/local/share/OpenCV/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
