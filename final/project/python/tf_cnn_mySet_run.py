@@ -1,4 +1,4 @@
-from tf_cnn_mnist_predict import testImages, getResizedImage
+from tf_cnn_mySet_predict import testImages, getResizedImage
 import tensorflow as tf
 import os
 
