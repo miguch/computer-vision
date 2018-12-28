@@ -1,9 +1,13 @@
 import numpy as np
+import os, sys
 
 trainImagePath = "./mnist/train-images-idx3-ubyte"
 testImagePath = "./mnist/t10k-images-idx3-ubyte"
 trainLabelPath = "./mnist/train-labels-idx1-ubyte"
 testLabelPath = "./mnist/t10k-labels-idx1-ubyte"
+
+scriptPath = os.path.dirname(os.path.abspath(sys.argv[0]))
+modelDir = os.path.join(scriptPath, "mnist", "mnist_convnet_model")
 
 class mnist_data:
     def __init__(self):

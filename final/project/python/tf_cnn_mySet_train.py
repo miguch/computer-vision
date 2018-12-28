@@ -5,7 +5,8 @@ from __future__ import print_function
 
 import numpy as np
 import tensorflow as tf
-from mnist_data import mnist_data, modelDir
+from mnist_data import mnist_data as mData
+from mySet_data import mySet_data as data, modelDir
 from tf_cnn_model import cnn_model_fn
 
 
@@ -14,9 +15,10 @@ tf.logging.set_verbosity(tf.logging.INFO)
 
 def main(unused_argv):
     print('Trainning with MNIST dataset...')
-    mnist = mnist_data()
-    train_data = np.asarray(mnist.trainImg, dtype=np.float32) / 255
-    train_labels = np.asarray(mnist.trainLabels, dtype=np.int32)
+    myData = data()
+    mnist = mData()
+    train_data = np.asarray(myData.trainImg, dtype=np.float32) / 255
+    train_labels = np.asarray(myData.trainLabels, dtype=np.int32)
     eval_data = np.asarray(mnist.testImg, dtype=np.float32) / 255
     eval_labels = np.asarray(mnist.testLabels, dtype=np.int32)
 
@@ -41,7 +43,7 @@ def main(unused_argv):
 
     # Evaluate the model and print results
     eval_input_fn = tf.estimator.inputs.numpy_input_fn(
-        x={"x": eval_data}, y=eval_labels, num_epochs=1, shuffle=False)
+        x={"x": eval_data}, y=eval_labels, num_epochs=3, shuffle=False)
     eval_results = mnist_classifier.evaluate(input_fn=eval_input_fn)
 
     print(eval_results)

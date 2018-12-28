@@ -3,8 +3,6 @@ import sys, os
 
 tf.logging.set_verbosity(tf.logging.ERROR)
 
-scriptPath = os.path.dirname(os.path.abspath(sys.argv[0]))
-modelDir = os.path.join(scriptPath, "mnist", "mnist_convnet_model")
 
 def cnn_model_fn(features, labels, mode):
     # Input Layer
