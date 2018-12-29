@@ -6,11 +6,12 @@ from __future__ import print_function
 import numpy as np
 import tensorflow as tf
 from mnist_data import mnist_data, modelDir
+from mySet_data import mySet_data
 from tf_cnn_model import cnn_model_fn
 
 
 def main(unused_argv):
-    mnist = mnist_data()
+    mnist = mySet_data()
     eval_data = np.asarray(mnist.testImg, dtype=np.float32) / 255
     eval_labels = np.asarray(mnist.testLabels, dtype=np.int32)
 

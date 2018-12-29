@@ -15,10 +15,10 @@ else
 
     rm -f CNNResult/*/*
 
-    python3 ./../project/CNN/tf_cnn_mnist_run.py $1 $2
+    python3 ./../../project/CNN/tf_cnn_mnist_run.py $1 $2
 
     for fi in CNNResult/xlsx/*.csv; do
-        python3 ./../project/csv2xlsx.py $fi
+        python3 ./../../project/csv2xlsx.py $fi
         rm $fi
     done
 
